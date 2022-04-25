@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Auth
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
+]);
+
+// Admin
+Route::group(
+    ['prefix'=>'admin',
+    'middleware' => 'auth'], function () {
+    Route::get('/', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin');
 });

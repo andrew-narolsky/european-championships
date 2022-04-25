@@ -160,7 +160,7 @@
                     </li>
                     <li class="nav-item active">
                         <a data-toggle="collapse" href="#competition_types" class="collapsed" aria-expanded="false">
-                            <i class="fas fa-globe"></i>
+                            <i class="fas fa-th-large"></i>
                             <p>{{ __('Competition Types') }}</p>
                             <span class="caret"></span>
                         </a>

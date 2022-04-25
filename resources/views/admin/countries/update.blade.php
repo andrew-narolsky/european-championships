@@ -54,6 +54,18 @@
                                         <textarea class="form-control ckeditor" id="ckeditor" name="notice" rows="3">{{ $country->notice }}</textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label>{{ __('Competition Types') }}</label>
+                                        <select multiple="" class="form-control" name="competition_types[]">
+                                            @foreach($competitionTypes as $competitionType)
+                                                @if($ids->contains($competitionType->id))
+                                                    <option selected="" value="{{ $competitionType->id }}">{{ $competitionType->name }}</option>
+                                                @else
+                                                    <option value="{{ $competitionType->id }}">{{ $competitionType->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-6">
                                             @if($country->flag)
                                                 <img src="{{ $country->flag }}" alt="{{ $country->name }}" height="50">

@@ -20,4 +20,9 @@ class Country extends Model
             ]
         ];
     }
+
+    public function competitionTypes() : object
+    {
+        return $this->belongsToMany(CompetitionType::class);
+    }
 }

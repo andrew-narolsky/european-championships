@@ -52,6 +52,14 @@
                                         <textarea class="form-control ckeditor" id="ckeditor" name="notice" rows="3">{{ old('notice') }}</textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label>{{ __('Competition Types') }}</label>
+                                        <select multiple="" class="form-control" name="competition_types[]">
+                                            @foreach($competitionTypes as $competitionType)
+                                                <option value="{{ $competitionType->id }}">{{ $competitionType->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>{{ __('Flag') }}</label>
                                         <input type="file" name="flag" class="form-control-file">
                                     </div>

@@ -140,24 +140,19 @@
                     <li class="nav-item active">
                         <a data-toggle="collapse" href="#generators" class="collapsed" aria-expanded="false">
                             <i class="fas fa-globe"></i>
-                            <p>{{ __('Generators') }}</p>
+                            <p>{{ __('Countries') }}</p>
                             <span class="caret"></span>
                         </a>
                         <div class="collapse" id="generators">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="#">
-                                        <span class="sub-item">{{ __('Conclusion generator') }}</span>
+                                    <a href="{{ route('countries.index') }}">
+                                        <span class="sub-item">{{ __('Countries List') }}</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <span class="sub-item">{{ __('Paraphrasing tools') }}</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="sub-item">{{ __('Essay maker') }}</span>
+                                    <a href="{{ route('countries.create') }}">
+                                        <span class="sub-item">{{ __('Add Country') }}</span>
                                     </a>
                                 </li>
                             </ul>

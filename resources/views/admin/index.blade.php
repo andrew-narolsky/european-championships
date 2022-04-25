@@ -27,6 +27,7 @@
                                 <div class="card-title">Top Products</div>
                             </div>
                             <div class="card-body pb-0">
+                                @include('admin.messages')
                                 <div class="d-flex">
                                     <div class="avatar">
                                         <img src="{{ asset('admin/img/logoproduct.svg') }}" alt="..." class="avatar-img rounded-circle">

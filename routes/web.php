@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Show country
+Route::get('/countries/{id}', [App\Http\Controllers\API\CountryController::class, 'index'])->name('countries');
+
 // Auth
 Auth::routes([
     'register' => false,
@@ -31,4 +34,7 @@ Route::group(
     ['prefix'=>'admin',
     'middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin');
+
+    // Countries
+    Route::resource('/countries', App\Http\Controllers\Admin\CountryController::class, ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
 });

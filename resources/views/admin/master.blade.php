@@ -138,12 +138,12 @@
                 </div>
                 <ul class="nav nav-primary">
                     <li class="nav-item active">
-                        <a data-toggle="collapse" href="#generators" class="collapsed" aria-expanded="false">
+                        <a data-toggle="collapse" href="#countries" class="collapsed" aria-expanded="false">
                             <i class="fas fa-globe"></i>
                             <p>{{ __('Countries') }}</p>
                             <span class="caret"></span>
                         </a>
-                        <div class="collapse" id="generators">
+                        <div class="collapse" id="countries">
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="{{ route('countries.index') }}">
@@ -153,6 +153,22 @@
                                 <li>
                                     <a href="{{ route('countries.create') }}">
                                         <span class="sub-item">{{ __('Add Country') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a data-toggle="collapse" href="#competition_types" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-globe"></i>
+                            <p>{{ __('Competition Types') }}</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="competition_types">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ route('competition-types.index') }}">
+                                        <span class="sub-item">{{ __('List of Competition Types') }}</span>
                                     </a>
                                 </li>
                             </ul>

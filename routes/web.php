@@ -37,4 +37,7 @@ Route::group(
 
     // Countries
     Route::resource('/countries', App\Http\Controllers\Admin\CountryController::class, ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
+
+    // Competition Types
+    Route::resource('/competition-types', App\Http\Controllers\Admin\CompetitionTypeController::class, ['only' => ['index']]);
 });

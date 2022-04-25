@@ -8,18 +8,16 @@ return new class extends Migration
 {
     public function up() : void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('competition_type_country', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedInteger('competition_type_id');
+            $table->unsignedInteger('country_id');
             $table->timestamps();
         });
     }
 
     public function down() : void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('competition_type_country');
     }
 };

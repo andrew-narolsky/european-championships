@@ -1,0 +1,37 @@
+APP_ENV=dev
+
+# Choose storage path on your machine. For all storage systems
+DATA_SAVE_PATH=../data
+PROJECT_NAME=SiteFoYou
+COMPOSE_PROJECT_NAME=SiteFoYou
+
+### WORKSPACE Container ################################################################################################
+
+WORKSPACE_PUID=1000
+WORKSPACE_PGID=1000
+
+### NGINX Container ####################################################################################################
+
+NGINX_CONF_DIR=./nginx/conf.d
+
+### MARIADB Container ##################################################################################################
+
+MARIADB_DATABASE=database
+MARIADB_USER=admin
+MARIADB_PASSWORD=admin
+MARIADB_PORT=3306
+MARIADB_ROOT_PASSWORD=root
+
+### PHP MY ADMIN #######################################################################################################
+PMA_DB_ENGINE=mariadb
+PMA_USER=admin
+PMA_PASSWORD=admin
+PMA_ROOT_PASSWORD=root
+PMA_PORT=8081
+
+############################
+# Miscellaneous
+############################
+
+PHP_IDE_CONFIG=serverName=netfixcms.dev
+COMPOSE_CONVERT_WINDOWS_PATHS=1

@@ -139,7 +139,7 @@
                 <ul class="nav nav-primary">
                     <li class="nav-item active">
                         <a data-toggle="collapse" href="#countries" class="collapsed" aria-expanded="false">
-                            <i class="fas fa-globe"></i>
+                            <i class="fas fa-flag"></i>
                             <p>{{ __('Countries') }}</p>
                             <span class="caret"></span>
                         </a>
@@ -159,16 +159,42 @@
                         </div>
                     </li>
                     <li class="nav-item active">
+                        <a data-toggle="collapse" href="#football_club" class="collapsed" aria-expanded="false">
+                            <i class="fas fa-futbol"></i>
+                            <p>{{ __('Football Club') }}</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="football_club">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="{{ route('football-clubs.index') }}">
+                                        <span class="sub-item">{{ __('Football Clubs List') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('football-clubs.create') }}">
+                                        <span class="sub-item">{{ __('Add Football Club') }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
                         <a data-toggle="collapse" href="#competition_types" class="collapsed" aria-expanded="false">
-                            <i class="fas fa-th-large"></i>
+                            <i class="fas fa-crown"></i>
                             <p>{{ __('Competition Types') }}</p>
                             <span class="caret"></span>
                         </a>
                         <div class="collapse" id="competition_types">
                             <ul class="nav nav-collapse">
                                 <li>
-                                    <a href="{{ route('competition-types.index') }}">
+                                    <a href="{{ route('competition-type.index') }}">
                                         <span class="sub-item">{{ __('List of Competition Types') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('competition.create') }}">
+                                        <span class="sub-item">{{ __('Add Competition') }}</span>
                                     </a>
                                 </li>
                             </ul>

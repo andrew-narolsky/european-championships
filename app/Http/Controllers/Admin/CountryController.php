@@ -122,7 +122,7 @@ class CountryController extends Controller
         return redirect()->route('countries.index');
     }
 
-    private function saveIds($country, $competition_types)
+    private function saveIds($country, $competition_types) : void
     {
         $ids = [];
         foreach ($competition_types as $item) {

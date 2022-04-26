@@ -19,9 +19,14 @@ Route::get('/', function () {
 });
 
 // Show country
-Route::get('/countries/{id}',
+Route::get('/country/{id}',
     [App\Http\Controllers\API\CountryController::class, 'index'])
     ->name('countries');
+
+// Show football club
+Route::get('/football-club/{id}',
+    [App\Http\Controllers\API\FootballClubController::class, 'index'])
+    ->name('football-clubs');
 
 // Auth
 Auth::routes([
@@ -46,7 +51,7 @@ Route::group(
     );
 
     // Competition Types
-    Route::resource('/competition-types',
+    Route::resource('/competition-type',
         App\Http\Controllers\Admin\CompetitionTypeController::class,
         ['only' => ['index']]
     );
@@ -55,5 +60,11 @@ Route::group(
     Route::resource('/competition',
         App\Http\Controllers\Admin\CompetitionController::class,
         ['only' => ['create', 'store', 'edit', 'update', 'destroy']]
+    );
+
+    // Football Club
+    Route::resource('/football-clubs',
+        App\Http\Controllers\Admin\FootballClubController::class,
+        ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]
     );
 });

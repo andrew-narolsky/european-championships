@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'New Country')
+@section('title', 'New Competition')
 
 @section('content')
     <div class="main-panel">
@@ -16,16 +16,8 @@
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
-                        <li class="nav-home">
-                            <a href="{{ route('countries.index') }}" style="color: #fff">
-                                <span>{{ __('Countries List') }}</span>
-                            </a>
-                        </li>
-                        <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
-                        </li>
                         <li class="nav-item">
-                            <span>{{ __('New Country') }}</span>
+                            <span>{{ __('New Competition') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -35,33 +27,33 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('New Country') }}</div>
+                                <div class="card-title">{{ __('New Competition') }}</div>
                             </div>
                             <div class="card-body pb-0">
-                                <form action="{{ route('countries.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
+                                <form action="{{ route('competition.store') }}" method="POST">
+                                    @csrf
                                     <div class="form-group @error('name') has-error @enderror">
                                         <label>{{ __('Name') }}</label>
                                         <input type="text" class="form-control input-style" name="name" value="{{ old('name') }}">
                                         @error('name')
-                                        <small class="form-text text-danger">{{ $message }}</small>
+                                            <small class="form-text text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Notice') }}</label>
-                                        <textarea class="form-control ckeditor" id="ckeditor" name="notice" rows="3">{{ old('notice') }}</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>{{ __('Competition Types') }}</label>
-                                        <select multiple="" class="form-control" name="competition_types[]">
-                                            @foreach($competitionTypes as $competitionType)
-                                                <option value="{{ $competitionType->id }}">{{ $competitionType->name }}</option>
+                                        <label>{{ __('Countries') }}</label>
+                                        <select class="form-control" name="country_id">
+                                            @foreach($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Flag') }}</label>
-                                        <input type="file" name="flag" class="form-control-file">
+                                        <label>{{ __('Competition Types') }}</label>
+                                        <select class="form-control" name="competition_type_id">
+                                            @foreach($competitionTypes as $competitionType)
+                                                <option value="{{ $competitionType->id }}">{{ $competitionType->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group text-right">
                                         <button type="submit" class="btn btn-success btn-style mt-4">{{ __('Create') }}</button>

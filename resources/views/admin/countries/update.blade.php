@@ -46,7 +46,7 @@
                                         <label>{{ __('Name') }}</label>
                                         <input type="text" class="form-control input-style" name="name" value="{{ $country->name }}">
                                         @error('name')
-                                        <small class="form-text text-danger">{{ $message }}</small>
+                                            <small class="form-text text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">
@@ -80,6 +80,54 @@
                                         <button type="submit" class="btn btn-success btn-style mt-4">{{ __('Update') }}</button>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">{{ __('Countries competition') }}</div>
+                                <a href="{{ route('competition.create') }}" class="btn btn-success">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ __(' New competition') }}
+                                </a>
+                            </div>
+                            <div class="card-body pb-0">
+                                <div class="card-body">
+                                    @if(!$competitions->count())
+                                        <div class="card-sub">
+                                            {{ __('Nothing found...') }}
+                                        </div>
+                                    @else
+                                        <table class="table mt-3">
+                                            <thead>
+                                            <tr>
+                                                <th>{{ __('ID') }}</th>
+                                                <th>{{ __('Title') }}</th>
+                                                <th>{{ __('Actions') }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($competitions as $competition)
+                                                <tr>
+                                                    <td>{{ $competition->id }}</td>
+                                                    <td>{{ $competition->name }}</td>
+                                                    <td>
+                                                        <a href="{{ route('competition.edit', $competition->id) }}" class="btn btn-primary  btn-xs edit page_block_delete">
+                                                            <i class="fas fa-pen"></i>
+                                                        </a>
+                                                        <form action="{{ route('competition.destroy', $competition->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" onclick="return confirm('are you sure?')" href="{{ route('competition.destroy', $competition->id) }}" class="btn btn-danger  btn-xs edit page_block_delete">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

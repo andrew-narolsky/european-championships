@@ -9,7 +9,7 @@ class SaveImage
     public function save($image, $image_name, $folder) : string|null
     {
         if ($image) {
-            $name = $image_name . "." . $image->extension();
+            $name = $image_name . '.' . $image->extension();
             $img = Image::make($image)->resize(300, 150, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();

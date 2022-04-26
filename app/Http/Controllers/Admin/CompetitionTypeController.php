@@ -10,7 +10,8 @@ class CompetitionTypeController extends Controller
 {
     protected object $competitionType;
 
-    public function __construct(CompetitionType $competitionType)
+    public function __construct(
+        CompetitionType $competitionType)
     {
         $this->competitionType = $competitionType;
     }
@@ -18,6 +19,7 @@ class CompetitionTypeController extends Controller
     public function index() : View
     {
         $competitionTypes = $this->competitionType->all();
-        return view('admin.competition-types.list', compact('competitionTypes'));
+        return view('admin.competition-types.list',
+            compact('competitionTypes'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Countries List')
+@section('title', 'Competition Types')
 
 @section('content')
     <div class="main-panel">
@@ -17,7 +17,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('Competition Type') }}</span>
+                            <span>{{ __('Competition Types') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('Competition Type') }}</div>
+                                <div class="card-title">{{ __('Competition Types') }}</div>
                             </div>
                             <div class="card-body">
                                 @if(!$competitionTypes->count())

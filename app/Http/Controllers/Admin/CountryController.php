@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Classes\SaveImage;
 use App\Http\Controllers\Controller;
+use App\Models\Competition;
 use App\Models\CompetitionType;
 use App\Models\Country;
 use Illuminate\Contracts\View\View;
@@ -15,14 +16,22 @@ class CountryController extends Controller
 {
     protected object $request;
     protected object $country;
+    protected object $competition;
     protected object $competitionType;
     protected object $saveImage;
     protected object $str;
 
-    public function __construct(Request $request, Country $country, CompetitionType $competitionType, SaveImage $saveImage, Str $str)
+    public function __construct(
+        Request $request,
+        Country $country,
+        Competition $competition,
+        CompetitionType $competitionType,
+        SaveImage $saveImage,
+        Str $str)
     {
         $this->request = $request;
         $this->country = $country;
+        $this->competition = $competition;
         $this->competitionType = $competitionType;
         $this->saveImage = $saveImage;
         $this->str = $str;
@@ -31,13 +40,15 @@ class CountryController extends Controller
     public function index() : View
     {
         $countries = $this->country->paginate(20);
-        return view('admin.countries.list', compact('countries'));
+        return view('admin.countries.list',
+            compact('countries'));
     }
 
     public function create() : View
     {
         $competitionTypes = $this->competitionType::all();
-        return view('admin.countries.create', compact('competitionTypes'));
+        return view('admin.countries.create',
+            compact('competitionTypes'));
     }
 
     public function store() : RedirectResponse
@@ -67,8 +78,10 @@ class CountryController extends Controller
     {
         $country = $this->country::with('competitionTypes')->findorfail($id);
         $competitionTypes = $this->competitionType::all();
+        $competitions = $this->competition::where('country_id', $id)->get();
         $ids = $country->competitionTypes->pluck('id');
-        return view('admin.countries.update', compact('country', 'competitionTypes', 'ids'));
+        return view('admin.countries.update',
+            compact('country', 'competitionTypes', 'ids', 'competitions'));
     }
 
     public function update($id) : RedirectResponse
@@ -77,7 +90,7 @@ class CountryController extends Controller
             'name' => ['required', 'unique:countries,name,' . $id, 'string', 'max:255']
         ]);
 
-        $country = $this->country::find($id);
+        $country = $this->country::findorfail($id);
 
         $image_url = $this->saveImage->save(
                 $this->request->file('new_flag'),
@@ -98,7 +111,7 @@ class CountryController extends Controller
 
     public function destroy($id) : RedirectResponse
     {
-        $country = $this->country::find($id);
+        $country = $this->country::findorfail($id);
 
         if ($country->flag) {
             unlink(public_path($country->flag));

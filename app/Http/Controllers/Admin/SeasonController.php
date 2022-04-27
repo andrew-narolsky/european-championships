@@ -80,8 +80,12 @@ class SeasonController extends Controller
 
         $awards = $competitionType->awards;
         $footballClubs = $country->footballClubs;
+        $winners = $this->getWinners($season, $awards);
+
+//        dd(collect($winners));
+
         return view('admin.seasons.update',
-            compact('season', 'awards', 'footballClubs', 'isResult'));
+            compact('season', 'awards', 'footballClubs', 'isResult', 'winners'));
     }
 
 
@@ -126,5 +130,18 @@ class SeasonController extends Controller
             }
         }
         $season->footballClubs()->sync($pivot);
+    }
+
+    private function getWinners($season, $awards) : array
+    {
+        $arr = [];
+        foreach ($awards as $award) {
+            foreach ($season->footballClubs as $footballClub) {
+                if ($footballClub->pivot->award_id == $award->id) {
+                    $arr[$award->id][] = $footballClub;
+                }
+            }
+        }
+        return $arr;
     }
 }

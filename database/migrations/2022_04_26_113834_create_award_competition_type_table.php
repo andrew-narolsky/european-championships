@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up() : void
     {
-        Schema::create('competition_type_country', function (Blueprint $table) {
+        Schema::create('award_competition_type', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('award_id');
             $table->unsignedInteger('competition_type_id');
-            $table->unsignedInteger('country_id');
         });
     }
 
     public function down() : void
     {
-        Schema::dropIfExists('competition_type_country');
+        Schema::dropIfExists('award_competition_type');
     }
 };

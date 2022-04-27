@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Competition;
 use App\Models\CompetitionType;
 use App\Models\Country;
+use App\Models\Season;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,17 +16,23 @@ class CompetitionController extends Controller
     protected object $request;
     protected object $competition;
     protected object $country;
+    protected object $season;
     protected object $competitionType;
+    protected array $result = [3, 5, 6];
+
+    public bool $isResult;
 
     public function __construct(
         Request $request,
         Competition $competition,
         Country $country,
+        Season $season,
         CompetitionType $competitionType)
     {
         $this->request = $request;
         $this->competition = $competition;
         $this->country = $country;
+        $this->season = $season;
         $this->competitionType = $competitionType;
     }
 
@@ -55,11 +62,18 @@ class CompetitionController extends Controller
 
     public function edit($id) : View
     {
-        $competition = $this->competition::findorfail($id);
+        $competition = $this->competition::with('competitionType')->findorfail($id);
         $competitionTypes = $this->competitionType::all();
         $countries = $this->country->all();
+        $country = $this->country->findorfail($competition->country_id);
+        $seasons = $this->season::with('footballClubs')->where('competition_id', $id)->get();
+        $awards = $competition->competitionType->awards;
+        $seasons = $this->getSeasons($seasons, $awards);
+
+        $isResult = in_array($competition->competition_type_id, $this->result);
+
         return view('admin.competitions.update',
-            compact('competition', 'countries', 'competitionTypes'));
+            compact('competition', 'countries', 'seasons', 'competitionTypes', 'awards', 'country', 'isResult'));
     }
 
     public function update($id) : RedirectResponse
@@ -86,5 +100,23 @@ class CompetitionController extends Controller
 
         session()->flash('success', 'Competition was successfully deleted!');
         return redirect()->back();
+    }
+
+    private function getSeasons($seasons, $awards) : array
+    {
+        $arr = [];
+        foreach ($seasons as $key => $season) {
+            $arr[$key]['id'] = $season->id;
+            $arr[$key]['year'] = $season->year;
+            $arr[$key]['result'] = $season->result;
+            foreach ($awards as $award) {
+                foreach ($season->footballClubs as $footballClub) {
+                    if ($footballClub->pivot->award_id == $award->id) {
+                        $arr[$key]['winners'][$award->name][] = $footballClub;
+                    }
+                }
+            }
+        }
+        return $arr;
     }
 }

@@ -67,4 +67,13 @@ Route::group(
         App\Http\Controllers\Admin\FootballClubController::class,
         ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]
     );
+
+    // Season
+    Route::get('/seasons/create/competition/{competition_id}',
+        [App\Http\Controllers\Admin\SeasonController::class, 'create'])
+        ->name('seasons.create');
+    Route::resource('/seasons',
+        App\Http\Controllers\Admin\SeasonController::class,
+        ['only' => ['store', 'edit', 'update', 'destroy']]
+    );
 });

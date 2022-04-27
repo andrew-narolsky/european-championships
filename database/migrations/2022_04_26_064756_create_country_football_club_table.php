@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('football_club_id');
             $table->unsignedInteger('country_id');
-            $table->timestamps();
         });
     }
 

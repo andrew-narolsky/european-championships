@@ -10,4 +10,9 @@ class Competition extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'country_id', 'competition_type_id'];
+
+    public function competitionType() : object
+    {
+        return $this->hasOne(CompetitionType::class, 'id', 'competition_type_id');
+    }
 }

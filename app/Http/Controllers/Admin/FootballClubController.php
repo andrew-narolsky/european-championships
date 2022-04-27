@@ -114,7 +114,7 @@ class FootballClubController extends Controller
         return redirect()->route('football-clubs.edit', $footballClub->id);
     }
 
-    public function destroy($id)
+    public function destroy($id) : RedirectResponse
     {
         $footballClub = $this->footballClub::findorfail($id);
 

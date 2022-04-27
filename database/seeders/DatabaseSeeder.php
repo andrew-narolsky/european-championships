@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CompetitionSeeder::class);
         $this->call(FootballClubSeeder::class);
         $this->call(CountryFootballClubSeeder::class);
+        $this->call(AwardSeeder::class);
+        $this->call(AwardCompetitionTypeSeeder::class);
+//        $this->call(SeasonSeeder::class);
     }
 }

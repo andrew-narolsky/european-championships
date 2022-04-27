@@ -17,15 +17,15 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-home">
-                            <a href="{{ route('countries.edit', $competition->country_id) }}" style="color: #fff">
-                                <span>{{ $countries[$competition->country_id]['name'] }}</span>
+                            <a href="{{ route('countries.edit', $country->id) }}" style="color: #fff">
+                                <span>{{ $country->name }}</span>
                             </a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('New Competition') }}</span>
+                            <span>{{ __('Update Competition') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -76,6 +76,71 @@
                                         <button type="submit" class="btn btn-success btn-style mt-4">{{ __('Save') }}</button>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">{{ $competition->name }}</div>
+                                <a href="{{ route('seasons.create', $competition->id) }}" class="btn btn-success">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ __(' New season') }}
+                                </a>
+                            </div>
+                            <div class="card-body pb-0">
+                                <div class="card-body">
+                                    @if(!count($seasons))
+                                        <div class="card-sub">
+                                            {{ __('Nothing found...') }}
+                                        </div>
+                                    @else
+                                        <table class="table mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('Year') }}</th>
+                                                    @foreach($awards as $award)
+                                                        <th>{{ $award->name }}</th>
+                                                    @endforeach
+                                                    @if($isResult)
+                                                        <th>{{ __('Result') }}</th>
+                                                    @endif
+                                                    <th>{{ __('Action') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($seasons as $season)
+                                                <tr>
+                                                    <td>{{ $season['year'] }}</td>
+                                                    @foreach($season['winners'] as$winners)
+                                                        <td>
+                                                        @foreach($winners as $key => $winner)
+                                                            {{ $winner['name'] }}
+                                                            @if(count($winners) != ($key + 1))
+                                                                {{ ',' }}
+                                                            @endif
+                                                        @endforeach
+                                                        </td>
+                                                    @endforeach
+                                                    @if($isResult)
+                                                        <th>{{ $season['result'] }}</th>
+                                                    @endif
+                                                    <td>
+                                                        <a href="{{ route('seasons.edit', $season['id']) }}" class="btn btn-primary  btn-xs edit page_block_delete">
+                                                            <i class="fas fa-pen"></i>
+                                                        </a>
+                                                        <form action="{{ route('seasons.destroy', $season['id']) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-danger  btn-xs edit page_block_delete">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

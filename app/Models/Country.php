@@ -25,4 +25,9 @@ class Country extends Model
     {
         return $this->belongsToMany(CompetitionType::class);
     }
+
+    public function footballClubs() : object
+    {
+        return $this->belongsToMany(FootballClub::class);
+    }
 }

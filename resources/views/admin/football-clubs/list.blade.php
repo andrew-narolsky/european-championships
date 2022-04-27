@@ -70,7 +70,7 @@
                                                     <form action="{{ route('football-clubs.destroy', $footballClub->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" onclick="return confirm('are you sure?')" href="{{ route('football-clubs.destroy', $footballClub->id) }}" class="btn btn-danger  btn-xs edit page_block_delete">
+                                                        <button type="submit" onclick="return confirm('are you sure?')" class="btn btn-danger  btn-xs edit page_block_delete">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>

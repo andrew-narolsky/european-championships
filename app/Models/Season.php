@@ -16,6 +16,11 @@ class Season extends Model
         return $this->belongsToMany(FootballClub::class)->withPivot('award_id');
     }
 
+    public function awards() : object
+    {
+        return $this->belongsToMany(Award::class, 'football_club_season');
+    }
+
     public function competition() : object
     {
         return $this->hasOne(Competition::class, 'id', 'competition_id');

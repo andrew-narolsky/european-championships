@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Resources\CountryResource;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class CountryController extends ApiController
     public function getModel($id) : Response
     {
         $country = $this->country::findorfail($id);
-        return response($country, Response::HTTP_OK);
+        return response(new CountryResource($country), Response::HTTP_OK);
     }
 
     public function getModels() : Response

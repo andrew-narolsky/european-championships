@@ -14,7 +14,7 @@ class FootballClubSeeder extends Seeder
                 "name" => "KF Tirana",
                 "slug" => "kf-tirana",
                 "notice" => null,
-                "old_names" => null,
+                "old_names" => 'SK Tirana, 17 Nëntori',
                 "founded" => 1920,
                 "destroyed" => null,
                 "image" => "/uploads/football-clubs/kf-tirana.png"

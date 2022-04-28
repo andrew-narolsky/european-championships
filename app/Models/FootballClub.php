@@ -20,4 +20,9 @@ class FootballClub extends Model
             ]
         ];
     }
+
+    public function countries() : object
+    {
+        return $this->belongsToMany(Country::class);
+    }
 }

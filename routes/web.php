@@ -19,13 +19,11 @@ Route::get('/', function () {
 });
 
 // Show country
-Route::get('/country/{id}',
-    [App\Http\Controllers\API\CountryController::class, 'index'])
+Route::get('/country/{id}', function () {})
     ->name('countries');
 
 // Show football club
-Route::get('/football-club/{id}',
-    [App\Http\Controllers\API\FootballClubController::class, 'index'])
+Route::get('/football-club/{id}', function () {})
     ->name('football-clubs');
 
 // Auth

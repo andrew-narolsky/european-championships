@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/countries',
+    [App\Http\Controllers\API\CountryController::class, 'getModels'])->middleware('api-token');
+Route::post('/country/{id}',
+    [App\Http\Controllers\API\CountryController::class, 'getModel'])->middleware('api-token');
+
+Route::post('/football-clubs',
+    [App\Http\Controllers\API\FootballClubController::class, 'getModels'])->middleware('api-token');
+Route::post('/football-club/{id}',
+    [App\Http\Controllers\API\FootballClubController::class, 'getModel'])->middleware('api-token');

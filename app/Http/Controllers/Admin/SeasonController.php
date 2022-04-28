@@ -82,8 +82,6 @@ class SeasonController extends Controller
         $footballClubs = $country->footballClubs;
         $winners = $this->getWinners($season, $awards);
 
-//        dd(collect($winners));
-
         return view('admin.seasons.update',
             compact('season', 'awards', 'footballClubs', 'isResult', 'winners'));
     }

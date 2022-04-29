@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/countries',
     [App\Http\Controllers\API\CountryController::class, 'getModels'])->middleware('api-token');
-Route::post('/country/{id}',
+Route::post('/countries/{id}',
     [App\Http\Controllers\API\CountryController::class, 'getModel'])->middleware('api-token');
 
 Route::post('/football-clubs',

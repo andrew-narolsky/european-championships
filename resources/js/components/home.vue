@@ -324,13 +324,13 @@ export default {
     methods: {
         handleStateClick (e) {
             if (e.target.tagName === 'path') {
-                if (e.target.dataset.id) {
-                    this.getCountry(e.target.dataset.id);
+                if (e.target.dataset.slug) {
+                    this.getCountry(e.target.dataset.slug);
                 }
             }
         },
-        getCountry(id) {
-            axios.post('/api/countries/' + id, {
+        getCountry(slug) {
+            axios.post('/api/countries/' + slug, {
                 key: '53V363XcSVOEsqRtHjxW'
             })
             .then(response => {

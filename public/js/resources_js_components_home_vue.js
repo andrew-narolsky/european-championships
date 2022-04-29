@@ -338,15 +338,15 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     handleStateClick: function handleStateClick(e) {
       if (e.target.tagName === 'path') {
-        if (e.target.dataset.id) {
-          this.getCountry(e.target.dataset.id);
+        if (e.target.dataset.slug) {
+          this.getCountry(e.target.dataset.slug);
         }
       }
     },
-    getCountry: function getCountry(id) {
+    getCountry: function getCountry(slug) {
       var _this = this;
 
-      axios.post('/api/countries/' + id, {
+      axios.post('/api/countries/' + slug, {
         key: '53V363XcSVOEsqRtHjxW'
       }).then(function (response) {
         _this.country = response.data;

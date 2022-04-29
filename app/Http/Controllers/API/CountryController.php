@@ -20,9 +20,9 @@ class CountryController extends ApiController
         $this->request = $request;
     }
 
-    public function getModel($id) : Response
+    public function getModel($slug) : Response
     {
-        $country = $this->country::findorfail($id);
+        $country = $this->country::where('slug', $slug)->firstOrFail();
         return response(new CountryResource($country), Response::HTTP_OK);
     }
 

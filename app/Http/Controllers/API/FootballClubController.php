@@ -23,9 +23,9 @@ class FootballClubController extends ApiController
         $this->request = $request;
     }
 
-    public function getModel($id) : Response
+    public function getModel($slug) : Response
     {
-        $footballClub = $this->footballClub::findorfail($id);
+        $footballClub = $this->footballClub::where('slug', $slug)->firstOrFail();
         return response($footballClub, Response::HTTP_OK);
     }
 

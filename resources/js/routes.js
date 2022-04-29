@@ -17,7 +17,7 @@ export const routes = [
 
     // Football Clubs
     {
-        path: '/football-club/:id',
+        path: '/football-club/:slug',
         name: 'football-club',
         component: () => import('./components/football-clubs/index')
     }

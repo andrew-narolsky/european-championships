@@ -2276,7 +2276,7 @@ var routes = [// FRONTEND //
   }
 }, // Football Clubs
 {
-  path: '/football-club/:id',
+  path: '/football-club/:slug',
   name: 'football-club',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_football-clubs_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/football-clubs/index */ "./resources/js/components/football-clubs/index.vue"));

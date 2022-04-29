@@ -31,9 +31,12 @@
                                 <tr v-for="season in competition.seasons" :key="season.id">
                                     <td>{{ season.year }}</td>
                                     <td v-for="winner in season.winners">
-                                        <router-link :to="{ name: 'football-club', params: { slug: winner.slug } }">
-                                            {{ winner.name }}
-                                        </router-link>
+                                        <span v-for="(item, i) in winner">
+                                            <router-link :to="{ name: 'football-club', params: { slug: item.slug } }">
+                                                {{ item.name }}
+                                            </router-link>
+                                            <span v-if="i + 1 !== winner.length">|</span>
+                                        </span>
                                     </td>
                                     <td v-if="competition.result">{{ season.result }}</td>
                                 </tr>

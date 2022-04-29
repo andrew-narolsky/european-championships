@@ -34,7 +34,7 @@ class CountryResource extends JsonResource
                 $awards = $this->season::with('awards')->findorfail($season->id)->awards;
                 $winners = $this->getWinners($season, $awards);
                 foreach ($awards as $award_key => $award) {
-                    $competitions[$key]['awards'][$award_key] = $award->name;
+                    $competitions[$key]['awards'][$award->name] = $award->name;
                 }
                 $competitions[$key]['result'] = in_array($item->competition_type_id, $this->result);
                 $competitions[$key]['seasons'][$k]['year'] = $season->year;
@@ -57,11 +57,11 @@ class CountryResource extends JsonResource
     {
         $arr = [];
         foreach ($awards as $award) {
-            foreach ($season->footballClubs as $footballClub) {
+            foreach ($season->footballClubs as $key => $footballClub) {
                 if ($footballClub->pivot->award_id == $award['id']) {
-                    $arr[$award['id']]['award_id'] = $footballClub->pivot->award_id;
-                    $arr[$award['id']]['name'] = $footballClub->name;
-                    $arr[$award['id']]['slug'] = $footballClub->slug;
+                    $arr[$award['id']][$key]['award_id'] = $footballClub->pivot->award_id;
+                    $arr[$award['id']][$key]['name'] = $footballClub->name;
+                    $arr[$award['id']][$key]['slug'] = $footballClub->slug;
                 }
             }
         }

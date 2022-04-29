@@ -25,4 +25,14 @@ class FootballClub extends Model
     {
         return $this->belongsToMany(Country::class);
     }
+
+    public function awards() : object
+    {
+        return $this->belongsToMany(Award::class, 'football_club_season');
+    }
+
+    public function seasons() : object
+    {
+        return $this->belongsToMany(Season::class, 'football_club_season')->withPivot('award_id');
+    }
 }

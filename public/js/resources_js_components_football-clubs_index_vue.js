@@ -74,6 +74,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     var slug = this.$route.params.slug;
@@ -93,8 +120,7 @@ __webpack_require__.r(__webpack_exports__);
         key: '53V363XcSVOEsqRtHjxW'
       }).then(function (response) {
         _this.football_club = response.data;
-        _this.football_club.country_name = response.data.info.country_name;
-        _this.awards = response.data.info.competitions;
+        _this.awards = response.data.awards;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -838,25 +864,181 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-9" }, [
-        _vm.football_club.notice
-          ? _c("div", { staticClass: "panel panel-white" }, [
-              _c("div", { staticClass: "panel-body user-profile-panel" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.football_club.notice) +
-                      "\n                    "
-                  ),
+      _c(
+        "div",
+        { staticClass: "col-md-9" },
+        [
+          _vm.football_club.notice
+            ? _c("div", { staticClass: "panel panel-white" }, [
+                _c("div", { staticClass: "panel-body user-profile-panel" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.football_club.notice) +
+                        "\n                    "
+                    ),
+                  ]),
                 ]),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.awards, function (award) {
+            return _c("div", { staticClass: "panel panel-white" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("h3", { staticClass: "card-title mb-0 text-left" }, [
+                  _c("strong", [_vm._v(_vm._s(award.name))]),
+                ]),
+                _vm._v(" "),
+                award.gold ? _c("hr", { staticClass: "my-0" }) : _vm._e(),
+                _vm._v(" "),
+                award.gold
+                  ? _c(
+                      "div",
+                      { staticClass: "card-body text-left" },
+                      [
+                        _c("strong", [
+                          _vm._v(
+                            "Champion (" +
+                              _vm._s(award.gold.years.length) +
+                              "):"
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(award.gold.years, function (gold, item) {
+                          return _c("span", [
+                            _vm._v(_vm._s(gold)),
+                            item + 1 !== award.gold.years.length
+                              ? _c("span", [_vm._v(", ")])
+                              : _vm._e(),
+                          ])
+                        }),
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                award.silver ? _c("hr", { staticClass: "my-0" }) : _vm._e(),
+                _vm._v(" "),
+                award.silver
+                  ? _c(
+                      "div",
+                      { staticClass: "card-body text-left" },
+                      [
+                        _c("strong", [
+                          _vm._v(
+                            "Runner up (" +
+                              _vm._s(award.silver.years.length) +
+                              "):"
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(award.silver.years, function (silver, item) {
+                          return _c("span", [
+                            _vm._v(_vm._s(silver)),
+                            item + 1 !== award.silver.years.length
+                              ? _c("span", [_vm._v(", ")])
+                              : _vm._e(),
+                          ])
+                        }),
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                award.bronze ? _c("hr", { staticClass: "my-0" }) : _vm._e(),
+                _vm._v(" "),
+                award.bronze
+                  ? _c(
+                      "div",
+                      { staticClass: "card-body text-left" },
+                      [
+                        _c("strong", [
+                          _vm._v(
+                            "Third place (" +
+                              _vm._s(award.bronze.years.length) +
+                              "):"
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(award.bronze.years, function (bronze, item) {
+                          return _c("span", [
+                            _vm._v(_vm._s(bronze)),
+                            item + 1 !== award.bronze.years.length
+                              ? _c("span", [_vm._v(", ")])
+                              : _vm._e(),
+                          ])
+                        }),
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                award.winner ? _c("hr", { staticClass: "my-0" }) : _vm._e(),
+                _vm._v(" "),
+                award.winner
+                  ? _c(
+                      "div",
+                      { staticClass: "card-body text-left" },
+                      [
+                        _c("strong", [
+                          _vm._v(
+                            "Winner (" +
+                              _vm._s(award.winner.years.length) +
+                              "):"
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(award.winner.years, function (winner, item) {
+                          return _c("span", [
+                            _vm._v(_vm._s(winner)),
+                            item + 1 !== award.winner.years.length
+                              ? _c("span", [_vm._v(", ")])
+                              : _vm._e(),
+                          ])
+                        }),
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                award.runner_up ? _c("hr", { staticClass: "my-0" }) : _vm._e(),
+                _vm._v(" "),
+                award.runner_up
+                  ? _c(
+                      "div",
+                      { staticClass: "card-body text-left" },
+                      [
+                        _c("strong", [
+                          _vm._v(
+                            "Runner up (" +
+                              _vm._s(award.runner_up.years.length) +
+                              "):"
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(
+                          award.runner_up.years,
+                          function (runner_up, item) {
+                            return _c("span", [
+                              _vm._v(_vm._s(runner_up)),
+                              item + 1 !== award.runner_up.years.length
+                                ? _c("span", [_vm._v(", ")])
+                                : _vm._e(),
+                            ])
+                          }
+                        ),
+                      ],
+                      2
+                    )
+                  : _vm._e(),
               ]),
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "panel panel-white" }),
-      ]),
+          }),
+        ],
+        2
+      ),
     ]),
   ])
 }

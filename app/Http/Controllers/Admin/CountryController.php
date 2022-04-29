@@ -99,9 +99,14 @@ class CountryController extends Controller
 
         $country->update([
             'name' => $this->request->input('name'),
-            'notice' => $this->request->input('notice'),
-            'flag' => $image_url,
+            'notice' => $this->request->input('notice')
         ]);
+
+        if ($image_url) {
+            $country->update([
+                'flag' => $image_url
+            ]);
+        }
 
         $this->saveIds($country, $this->request->input('competition_types'));
 

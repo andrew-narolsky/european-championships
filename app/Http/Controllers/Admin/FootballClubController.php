@@ -94,19 +94,24 @@ class FootballClubController extends Controller
 
         $footballClub = $this->footballClub::findorfail($id);
 
-        $image_url = $this->saveImage->save(
-            $this->request->file('image'),
-            $this->str::slug($this->request->input('name')),
-            'football-clubs');
-
         $footballClub->update([
             'name' => $this->request->input('name'),
             'old_names' => $this->request->input('old_names'),
             'founded' => $this->request->input('founded'),
             'destroyed' => $this->request->input('destroyed'),
-            'notice' => $this->request->input('notice'),
-            'image' => $image_url,
+            'notice' => $this->request->input('notice')
         ]);
+
+        $image_url = $this->saveImage->save(
+            $this->request->file('image'),
+            $this->str::slug($this->request->input('name')),
+            'football-clubs');
+
+        if ($image_url) {
+            $footballClub->update([
+                'image' => $image_url
+            ]);
+        }
 
         $this->saveIds($footballClub, $this->request->input('countries'));
 

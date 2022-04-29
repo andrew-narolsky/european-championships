@@ -19,12 +19,14 @@ Route::get('/', function () {
 });
 
 // Show country
-Route::get('/country/{id}', function () {})
-    ->name('countries');
+Route::get('/country/{id}', function () {
+    return view('front.index');
+})->name('countries');
 
 // Show football club
-Route::get('/football-club/{id}', function () {})
-    ->name('football-clubs');
+Route::get('/football-club/{id}', function () {
+    return view('front.index');
+})->name('football-clubs');
 
 // Auth
 Auth::routes([

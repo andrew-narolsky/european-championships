@@ -2269,14 +2269,14 @@ var routes = [// FRONTEND //
   }
 }, // Countries
 {
-  path: '/countries/:slug',
+  path: '/country/:slug',
   name: 'country',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_countries_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/countries/index */ "./resources/js/components/countries/index.vue"));
   }
 }, // Football Clubs
 {
-  path: '/football-clubs/:id',
+  path: '/football-club/:id',
   name: 'football-club',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_football-clubs_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/football-clubs/index */ "./resources/js/components/football-clubs/index.vue"));

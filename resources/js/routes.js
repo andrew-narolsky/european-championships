@@ -10,14 +10,14 @@ export const routes = [
 
     // Countries
     {
-        path: '/countries/:slug',
+        path: '/country/:slug',
         name: 'country',
         component: () => import('./components/countries/index')
     },
 
     // Football Clubs
     {
-        path: '/football-clubs/:id',
+        path: '/football-club/:id',
         name: 'football-club',
         component: () => import('./components/football-clubs/index')
     }

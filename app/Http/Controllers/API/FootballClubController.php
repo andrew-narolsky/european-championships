@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Resources\FootballClubResource;
 use App\Models\Country;
 use App\Models\FootballClub;
 use Illuminate\Http\Request;
@@ -25,8 +26,8 @@ class FootballClubController extends ApiController
 
     public function getModel($slug) : Response
     {
-        $footballClub = $this->footballClub::where('slug', $slug)->firstOrFail();
-        return response($footballClub, Response::HTTP_OK);
+        $footballClub = $this->footballClub::with('countries')->where('slug', $slug)->firstOrFail();
+        return response(new FootballClubResource($footballClub), Response::HTTP_OK);
     }
 
     public function getModels() : Response

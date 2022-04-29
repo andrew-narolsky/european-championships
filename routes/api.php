@@ -20,5 +20,5 @@ Route::post('/countries/{slug}',
 
 Route::post('/football-clubs',
     [App\Http\Controllers\API\FootballClubController::class, 'getModels'])->middleware('api-token');
-Route::post('/football-club/{id}',
+Route::post('/football-clubs/{id}',
     [App\Http\Controllers\API\FootballClubController::class, 'getModel'])->middleware('api-token');

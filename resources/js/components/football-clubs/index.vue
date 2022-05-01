@@ -55,31 +55,11 @@
                 </div>
                 <div class="panel panel-white" v-for="award in awards">
                     <div class="card-header">
-                        <h3 class="card-title mb-0 text-left"><strong>{{ award.name }}</strong></h3>
-                        <hr class="my-0" v-if="award.gold">
-                        <div class="card-body text-left" v-if="award.gold">
-                            <strong>Champion ({{ award.gold.years.length }}):</strong>
-                            <span v-for="(gold, item) in award.gold.years">{{ gold }}<span v-if="item + 1 !== award.gold.years.length">, </span></span>
-                        </div>
-                        <hr class="my-0" v-if="award.silver">
-                        <div class="card-body text-left" v-if="award.silver">
-                            <strong>Runner up ({{ award.silver.years.length }}):</strong>
-                            <span v-for="(silver, item) in award.silver.years">{{ silver }}<span v-if="item + 1 !== award.silver.years.length">, </span></span>
-                        </div>
-                        <hr class="my-0" v-if="award.bronze">
-                        <div class="card-body text-left" v-if="award.bronze">
-                            <strong>Third place ({{ award.bronze.years.length }}):</strong>
-                            <span v-for="(bronze, item) in award.bronze.years">{{ bronze }}<span v-if="item + 1 !== award.bronze.years.length">, </span></span>
-                        </div>
-                        <hr class="my-0" v-if="award.winner">
-                        <div class="card-body text-left" v-if="award.winner">
-                            <strong>Winner ({{ award.winner.years.length }}):</strong>
-                            <span v-for="(winner, item) in award.winner.years">{{ winner }}<span v-if="item + 1 !== award.winner.years.length">, </span></span>
-                        </div>
-                        <hr class="my-0" v-if="award.runner_up">
-                        <div class="card-body text-left" v-if="award.runner_up">
-                            <strong>Runner up ({{ award.runner_up.years.length }}):</strong>
-                            <span v-for="(runner_up, item) in award.runner_up.years">{{ runner_up }}<span v-if="item + 1 !== award.runner_up.years.length">, </span></span>
+                        <h3 class="card-title mb-0 text-left">{{ award.name }}</h3>
+                        <hr class="my-0">
+                        <div class="card-body text-left" v-for="trophy in award.trophies">
+                            <strong>{{ trophy.title }}({{ trophy.years.length }}):</strong>
+                            <span v-for="(year, item) in trophy.years">{{ year }}<span v-if="item + 1 !== trophy.years.length">, </span></span>
                         </div>
                     </div>
                 </div>
@@ -115,12 +95,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .card-title.h6 {
         text-align: left;
     }
     .sub_title {
         padding-right: 10px;
         text-align: left;
+    }
+    .card-body.text-left {
+        margin-top: 10px;
     }
 </style>

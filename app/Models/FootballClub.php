@@ -33,6 +33,7 @@ class FootballClub extends Model
 
     public function seasons() : object
     {
-        return $this->belongsToMany(Season::class, 'football_club_season')->withPivot('award_id');
+        return $this->belongsToMany(Season::class, 'football_club_season')->withPivot('award_id')
+            ->with('competition')->with('awards');
     }
 }

@@ -62,6 +62,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     var slug = this.$route.params.slug;
@@ -265,34 +268,38 @@ var render = function () {
                           return _c(
                             "td",
                             _vm._l(winner, function (item, i) {
-                              return _c(
-                                "span",
-                                [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "football-club",
-                                          params: { slug: item.slug },
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                            " +
-                                          _vm._s(item.name) +
-                                          "\n                                        "
-                                      ),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  i + 1 !== winner.length
-                                    ? _c("span", [_vm._v("|")])
-                                    : _vm._e(),
-                                ],
-                                1
-                              )
+                              return _c("span", [
+                                item.slug
+                                  ? _c(
+                                      "span",
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            attrs: {
+                                              to: {
+                                                name: "football-club",
+                                                params: { slug: item.slug },
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                " +
+                                                _vm._s(item.name) +
+                                                "\n                                            "
+                                            ),
+                                          ]
+                                        ),
+                                      ],
+                                      1
+                                    )
+                                  : _c("span", [_vm._v("-")]),
+                                _vm._v(" "),
+                                i + 1 !== winner.length
+                                  ? _c("span", [_vm._v("|")])
+                                  : _vm._e(),
+                              ])
                             }),
                             0
                           )

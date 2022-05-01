@@ -54,7 +54,7 @@
                                             <input type="hidden" class="form-control input-style" name="award[{{ $award->id }}][award_id]" value="{{ $award->id }}">
                                             <select @if(!$isResult) multiple="" @endif class="form-control" name="award[{{ $award->id }}][football_club_id][]">
                                                 @foreach($footballClubs as $footballClub)
-                                                    @if(collect($winners[$award->id])->pluck('id')->contains($footballClub->id))
+                                                    @if(isset($winners[$award->id]) && collect($winners[$award->id])->pluck('id')->contains($footballClub->id))
                                                         <option selected="" value="{{ $footballClub->id }}">{{ $footballClub->name }}</option>
                                                     @else
                                                         <option value="{{ $footballClub->id }}">{{ $footballClub->name }}</option>

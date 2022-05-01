@@ -68,7 +68,7 @@ class CompetitionController extends Controller
         $country = $this->country->findorfail($competition->country_id);
         $seasons = $this->season::with('footballClubs')->where('competition_id', $id)->get();
         $awards = $competition->competitionType->awards;
-        $seasons = $this->getSeasons($seasons, $awards);
+        $seasons = $this->getSeasons($seasons, $awards, $competition->competition_type_id);
 
         $isResult = in_array($competition->competition_type_id, $this->result);
 
@@ -102,7 +102,7 @@ class CompetitionController extends Controller
         return redirect()->back();
     }
 
-    private function getSeasons($seasons, $awards) : array
+    private function getSeasons($seasons, $awards, $competition_type_id) : array
     {
         $arr = [];
         foreach ($seasons as $key => $season) {
@@ -115,6 +115,9 @@ class CompetitionController extends Controller
                         $arr[$key]['winners'][$award->name][] = $footballClub;
                     }
                 }
+            }
+            if ($competition_type_id == 1 && count($season->footballClubs) == 2) {
+                $arr[$key]['winners']['Bronze'] = false;
             }
         }
         return $arr;

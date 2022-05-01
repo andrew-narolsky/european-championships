@@ -110,16 +110,22 @@
                                             @foreach($seasons as $season)
                                                 <tr>
                                                     <td>{{ $season['year'] }}</td>
-                                                    @foreach($season['winners'] as$winners)
-                                                        <td>
-                                                        @foreach($winners as $key => $winner)
-                                                            {{ $winner['name'] }}
-                                                            @if(count($winners) != ($key + 1))
-                                                                {{ ',' }}
+                                                    @if (isset($season['winners']))
+                                                        @foreach($season['winners'] as $winners)
+                                                            <td>
+                                                            @if(!empty($winners))
+                                                                @foreach($winners as $key => $winner)
+                                                                    {{ $winner['name'] }}
+                                                                    @if(count($winners) != ($key + 1))
+                                                                        {{ ',' }}
+                                                                    @endif
+                                                                @endforeach
+                                                            @else
+                                                                <span>-</span>
                                                             @endif
+                                                            </td>
                                                         @endforeach
-                                                        </td>
-                                                    @endforeach
+                                                    @endif
                                                     @if($isResult)
                                                         <th>{{ $season['result'] }}</th>
                                                     @endif

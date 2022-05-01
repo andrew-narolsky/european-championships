@@ -119,6 +119,9 @@ class SeasonController extends Controller
     {
         $pivot = [];
         foreach ($awards as $group) {
+            if (!isset($group['football_club_id'])) {
+                continue;
+            }
             if (count($group['football_club_id']) == 1) {
                 $pivot[$group['football_club_id'][0]] = ['award_id' => $group['award_id']];
             } else {

@@ -1,5 +1,6 @@
 /node_modules
 /public/favicon.ico
+/public/js/
 /public/admin/
 /public/front/
 /public/assets/

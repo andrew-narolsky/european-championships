@@ -56,8 +56,8 @@
                 <div class="panel panel-white" v-for="award in awards">
                     <div class="card-header">
                         <h3 class="card-title mb-0 text-left">{{ award.name }}</h3>
-                        <hr class="my-0">
                         <div class="card-body text-left" v-for="trophy in award.trophies">
+                            <hr class="my-0">
                             <strong>{{ trophy.title }}({{ trophy.years.length }}):</strong>
                             <span v-for="(year, item) in trophy.years">{{ year }}<span v-if="item + 1 !== trophy.years.length">, </span></span>
                         </div>
@@ -102,8 +102,5 @@ export default {
     .sub_title {
         padding-right: 10px;
         text-align: left;
-    }
-    .card-body.text-left {
-        margin-top: 10px;
     }
 </style>

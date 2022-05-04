@@ -15,4 +15,9 @@ class Competition extends Model
     {
         return $this->hasOne(CompetitionType::class, 'id', 'competition_type_id');
     }
+
+    public function seasons() : object
+    {
+        return $this->hasMany(Season::class)->with('competition');
+    }
 }

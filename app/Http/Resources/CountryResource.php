@@ -3,43 +3,40 @@
 namespace App\Http\Resources;
 
 use App\Models\Competition;
-use App\Models\Season;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CountryResource extends JsonResource
 {
     public object $competition;
-    public object $season;
     protected array $result = [3, 5, 6];
 
     public function __construct($resource)
     {
         parent::__construct($resource);
         $this->competition = new Competition();
-        $this->season = new Season();
     }
 
     public function toArray($request) : array
     {
-        $countryCompetitions = $this->competition::where('country_id', $this->id)->get();
+        $countryCompetitions = $this->competition::with('seasons.footballClubs')
+            ->with('seasons.awards')
+            ->where('country_id', $this->id)->get();
         $competitions = [];
 
-        foreach ($countryCompetitions as $key => $item) {
-            $competitions[$key]['id'] = $item->id;
-            $competitions[$key]['name'] = $item->name;
-            $competitions[$key]['competition_type_id'] = $item->competition_type_id;
-            $seasons = $this->season::with('footballClubs')->where('competition_id', $item->id)->get();
+        foreach ($countryCompetitions as $key => $competition) {
+            $competitions[$key]['id'] = $competition->id;
+            $competitions[$key]['name'] = $competition->name;
 
-            foreach ($seasons as $k => $season) {
-                $awards = $this->season::with('awards')->findorfail($season->id)->awards;
-                $winners = $this->getWinners($season, $awards, $item->competition_type_id);
+            foreach ($competition->seasons as $k => $season) {
+                $awards = $season->awards;
+                $winners = $this->getWinners($season, $awards, $competition->competition_type_id);
                 foreach ($awards as $award_key => $award) {
                     $competitions[$key]['awards'][$award->name] = $award->name;
                 }
-                if ($item->competition_type_id == 1 && count($awards) == 2) {
+                if ($competition->competition_type_id == 1 && count($awards) == 2) {
                     $competitions[$key]['awards']['Bronze'] = 'Bronze';
                 }
-                $competitions[$key]['result'] = in_array($item->competition_type_id, $this->result);
+                $competitions[$key]['result'] = in_array($competition->competition_type_id, $this->result);
                 $competitions[$key]['seasons'][$k]['year'] = $season->year;
                 $competitions[$key]['seasons'][$k]['winners'] = $winners;
                 $competitions[$key]['seasons'][$k]['result'] = $season->result;

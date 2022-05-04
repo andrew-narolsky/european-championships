@@ -28,11 +28,9 @@ class CountryResource extends JsonResource
             $competitions[$key]['name'] = $competition->name;
 
             foreach ($competition->seasons as $k => $season) {
-                $awards = $season->awards;
+                $awards = $season->awards->toArray();
                 $winners = $this->getWinners($season, $awards, $competition->competition_type_id);
-                foreach ($awards as $award_key => $award) {
-                    $competitions[$key]['awards'][$award->name] = $award->name;
-                }
+                $competitions[$key]['awards'] = array_map([$this, 'awards'], $awards);
                 if ($competition->competition_type_id == 1 && count($awards) == 2) {
                     $competitions[$key]['awards']['Bronze'] = 'Bronze';
                 }
@@ -70,5 +68,10 @@ class CountryResource extends JsonResource
             $arr[3][2]['name'] = [];
         }
         return $arr;
+    }
+
+    private static function awards($award)
+    {
+        return $award['name'];
     }
 }

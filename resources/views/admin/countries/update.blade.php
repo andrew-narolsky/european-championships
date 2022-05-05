@@ -89,7 +89,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">{{ __('Countries competition') }}</div>
-                                <a href="{{ route('competition.create') }}" class="btn btn-success">
+                                <a href="{{ route('competition.create', $country->id) }}" class="btn btn-success">
                                     <i class="fas fa-plus-circle"></i>
                                     {{ __(' New competition') }}
                                 </a>

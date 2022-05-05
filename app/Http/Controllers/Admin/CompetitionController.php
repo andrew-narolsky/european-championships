@@ -36,12 +36,12 @@ class CompetitionController extends Controller
         $this->competitionType = $competitionType;
     }
 
-    public function create() : View
+    public function create($country_id = false) : View
     {
         $competitionTypes = $this->competitionType::all();
         $countries = $this->country->all();
         return view('admin.competitions.create',
-            compact('countries', 'competitionTypes'));
+            compact('countries', 'competitionTypes', 'country_id'));
     }
 
     public function store() : RedirectResponse

@@ -57,9 +57,12 @@ Route::group(
     );
 
     // Competition
+    Route::get('/competition/create/{country_id?}',
+        [App\Http\Controllers\Admin\CompetitionController::class, 'create'])
+        ->name('competition.create');
     Route::resource('/competition',
         App\Http\Controllers\Admin\CompetitionController::class,
-        ['only' => ['create', 'store', 'edit', 'update', 'destroy']]
+        ['only' => ['store', 'edit', 'update', 'destroy']]
     );
 
     // Football Club

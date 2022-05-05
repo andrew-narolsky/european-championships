@@ -38,7 +38,7 @@ class CompetitionController extends Controller
 
     public function create($country_id = false) : View
     {
-        $competitionTypes = $this->competitionType::all();
+        $competitionTypes = $this->competitionType->all();
         $countries = $this->country->all();
         return view('admin.competitions.create',
             compact('countries', 'competitionTypes', 'country_id'));
@@ -50,7 +50,7 @@ class CompetitionController extends Controller
             'name' => ['required', 'string', 'max:255']
         ]);
 
-        $this->competition::create([
+        $this->competition->create([
             'name' => $this->request->input('name'),
             'country_id' => $this->request->input('country_id'),
             'competition_type_id' => $this->request->input('competition_type_id'),
@@ -62,11 +62,11 @@ class CompetitionController extends Controller
 
     public function edit($id) : View
     {
-        $competition = $this->competition::with('competitionType')->findorfail($id);
-        $competitionTypes = $this->competitionType::all();
+        $competition = $this->competition->with('competitionType')->findorfail($id);
+        $competitionTypes = $this->competitionType->all();
         $countries = $this->country->all();
         $country = $this->country->findorfail($competition->country_id);
-        $seasons = $this->season::with('footballClubs')->where('competition_id', $id)->get();
+        $seasons = $this->season->with('footballClubs')->where('competition_id', $id)->get();
         $awards = $competition->competitionType->awards;
         $seasons = $this->getSeasons($seasons, $awards, $competition->competition_type_id);
 
@@ -82,7 +82,7 @@ class CompetitionController extends Controller
             'name' => ['required', 'string', 'max:255']
         ]);
 
-        $competition = $this->competition::findorfail($id);
+        $competition = $this->competition->findorfail($id);
         $competition->update([
             'name' => $this->request->input('name'),
             'country_id' => $this->request->input('country_id'),
@@ -95,7 +95,7 @@ class CompetitionController extends Controller
 
     public function destroy($id) : RedirectResponse
     {
-        $competition = $this->competition::findorfail($id);
+        $competition = $this->competition->findorfail($id);
         $competition->destroy($id);
 
         session()->flash('success', 'Competition was successfully deleted!');

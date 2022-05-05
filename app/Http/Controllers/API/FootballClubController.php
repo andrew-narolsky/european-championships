@@ -26,17 +26,17 @@ class FootballClubController extends ApiController
 
     public function getModel($slug) : Response
     {
-        $footballClub = $this->footballClub::with('countries')->where('slug', $slug)->firstOrFail();
+        $footballClub = $this->footballClub->with('countries')->where('slug', $slug)->firstOrFail();
         return response(new FootballClubResource($footballClub), Response::HTTP_OK);
     }
 
     public function getModels() : Response
     {
         if ($this->request->input('country')) {
-            $footballClubs = $this->country::with('footballClubs')
+            $footballClubs = $this->country->with('footballClubs')
                 ->findorfail($this->request->input('country'))->footballClubs;
         } else {
-            $footballClubs = $this->footballClub::all();
+            $footballClubs = $this->footballClub->all();
         }
         return response($footballClubs, Response::HTTP_OK);
     }

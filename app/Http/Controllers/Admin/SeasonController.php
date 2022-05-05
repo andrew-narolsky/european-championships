@@ -38,9 +38,9 @@ class SeasonController extends Controller
 
     public function create($competition_id) : View
     {
-        $competition = $this->competition::with('competitionType')->findorfail($competition_id);
-        $competitionType = $this->competitionType::with('awards')->findorfail($competition->competition_type_id);
-        $country = $this->country::with('footballClubs')->findorfail($competition->country_id);
+        $competition = $this->competition->with('competitionType')->findorfail($competition_id);
+        $competitionType = $this->competitionType->with('awards')->findorfail($competition->competition_type_id);
+        $country = $this->country->with('footballClubs')->findorfail($competition->country_id);
 
         $isResult = in_array($competition->competition_type_id, $this->result);
 
@@ -56,7 +56,7 @@ class SeasonController extends Controller
             'year' => ['required', 'string', 'max:255']
         ]);
 
-        $season = $this->season::create([
+        $season = $this->season->create([
             'year' => $this->request->input('year'),
             'result' => $this->request->input('result'),
             'competition_id' => $this->request->input('competition_id'),
@@ -70,11 +70,11 @@ class SeasonController extends Controller
 
     public function edit($id) : View
     {
-        $season = $this->season::with('footballClubs')->findorfail($id);
+        $season = $this->season->with('footballClubs')->findorfail($id);
 
-        $competition = $this->competition::with('competitionType')->findorfail($season->competition_id);
-        $competitionType = $this->competitionType::with('awards')->findorfail($competition->competition_type_id);
-        $country = $this->country::with('footballClubs')->findorfail($competition->country_id);
+        $competition = $this->competition->with('competitionType')->findorfail($season->competition_id);
+        $competitionType = $this->competitionType->with('awards')->findorfail($competition->competition_type_id);
+        $country = $this->country->with('footballClubs')->findorfail($competition->country_id);
 
         $isResult = in_array($competition->competition_type_id, $this->result);
 
@@ -93,7 +93,7 @@ class SeasonController extends Controller
             'year' => ['required', 'string', 'max:255']
         ]);
 
-        $season = $this->season::with('footballClubs')->findorfail($id);
+        $season = $this->season->with('footballClubs')->findorfail($id);
         $season->update([
             'year' => $this->request->input('year'),
             'result' => $this->request->input('result'),
@@ -108,7 +108,7 @@ class SeasonController extends Controller
 
     public function destroy($id) : RedirectResponse
     {
-        $season = $this->season::findorfail($id);
+        $season = $this->season->findorfail($id);
         $season->destroy($id);
 
         session()->flash('success', 'Season was successfully deleted!');

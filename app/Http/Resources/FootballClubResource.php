@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\FootballClub;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FootballClubResource extends JsonResource

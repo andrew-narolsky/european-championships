@@ -22,13 +22,13 @@ class CountryController extends ApiController
 
     public function getModel($slug) : Response
     {
-        $country = $this->country::where('slug', $slug)->firstOrFail();
+        $country = $this->country->where('slug', $slug)->firstOrFail();
         return response(new CountryResource($country), Response::HTTP_OK);
     }
 
     public function getModels() : Response
     {
-        $countries = $this->country::all();
+        $countries = $this->country->all();
         return response($countries, Response::HTTP_OK);
     }
 }

@@ -46,7 +46,7 @@ class CountryController extends Controller
 
     public function create() : View
     {
-        $competitionTypes = $this->competitionType::all();
+        $competitionTypes = $this->competitionType->all();
         return view('admin.countries.create',
             compact('competitionTypes'));
     }
@@ -62,7 +62,7 @@ class CountryController extends Controller
             $this->str::slug($this->request->input('name')),
                 'countries');
 
-        $country = $this->country::create([
+        $country = $this->country->create([
             'name' => $this->request->input('name'),
             'notice' => $this->request->input('notice'),
             'flag' => $image_url,
@@ -76,9 +76,9 @@ class CountryController extends Controller
 
     public function edit($id) : View
     {
-        $country = $this->country::with('competitionTypes')->findorfail($id);
-        $competitionTypes = $this->competitionType::all();
-        $competitions = $this->competition::where('country_id', $id)->get();
+        $country = $this->country->with('competitionTypes')->findorfail($id);
+        $competitionTypes = $this->competitionType->all();
+        $competitions = $this->competition->where('country_id', $id)->get();
         $ids = $country->competitionTypes->pluck('id');
         return view('admin.countries.update',
             compact('country', 'competitionTypes', 'ids', 'competitions'));
@@ -90,7 +90,7 @@ class CountryController extends Controller
             'name' => ['required', 'unique:countries,name,' . $id, 'string', 'max:255']
         ]);
 
-        $country = $this->country::findorfail($id);
+        $country = $this->country->findorfail($id);
 
         $image_url = $this->saveImage->save(
                 $this->request->file('new_flag'),
@@ -116,7 +116,7 @@ class CountryController extends Controller
 
     public function destroy($id) : RedirectResponse
     {
-        $country = $this->country::findorfail($id);
+        $country = $this->country->findorfail($id);
 
         if ($country->flag) {
             unlink(public_path($country->flag));

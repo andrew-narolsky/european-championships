@@ -18,7 +18,7 @@ class CountryResource extends JsonResource
 
     public function toArray($request) : array
     {
-        $countryCompetitions = $this->competition::with('competitionType.awards')
+        $countryCompetitions = $this->competition->with('competitionType.awards')
             ->with('seasons.footballClubs')
             ->where('country_id', $this->id)->get();
 

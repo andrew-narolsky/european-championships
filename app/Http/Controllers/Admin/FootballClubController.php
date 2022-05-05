@@ -40,11 +40,11 @@ class FootballClubController extends Controller
             compact('footballClubs'));
     }
 
-    public function create() : View
+    public function create($country_id = false) : View
     {
         $countries = $this->country::all();
         return view('admin.football-clubs.create',
-            compact('countries'));
+            compact('countries', 'country_id'));
     }
 
     public function store() : RedirectResponse

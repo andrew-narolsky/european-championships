@@ -63,9 +63,12 @@ Route::group(
     );
 
     // Football Club
+    Route::get('/football-clubs/create/{country_id?}',
+        [App\Http\Controllers\Admin\FootballClubController::class, 'create'])
+        ->name('football-clubs.create');
     Route::resource('/football-clubs',
         App\Http\Controllers\Admin\FootballClubController::class,
-        ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]
+        ['only' => ['index', 'store', 'edit', 'update', 'destroy']]
     );
 
     // Season

@@ -36,6 +36,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">{{ __('Edit Country') }}</div>
+                                <a href="{{ route('football-clubs.create', $country->id) }}" class="btn btn-success">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ __('Add Football Club') }}
+                                </a>
                             </div>
                             <div class="card-body pb-0">
                                 @include('admin.messages')

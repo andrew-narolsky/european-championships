@@ -70,7 +70,7 @@
                                         <label>{{ __('Countries') }}</label>
                                         <select multiple="" class="form-control" name="countries[]">
                                             @foreach($countries as $country)
-                                                @if(old('countries') && in_array($country->id, old('countries')))
+                                                @if(old('countries') && in_array($country->id, old('countries')) || $country->id == $country_id)
                                                     <option selected="" value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @else
                                                     <option value="{{ $country->id }}">{{ $country->name }}</option>

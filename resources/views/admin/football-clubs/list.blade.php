@@ -28,10 +28,16 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">{{ __('Football Clubs List') }}</div>
-                                <a href="{{ route('football-clubs.create') }}" class="btn btn-success">
-                                    <i class="fas fa-plus-circle"></i>
-                                    {{ __(' New Football Club') }}
-                                </a>
+                                <select id="select_country" class="form-control" name="country" style="width: 300px">
+                                    <option value="0">{{ __('Select country') }}</option>
+                                    @foreach($countries as $country)
+                                        @if(old('countries') && in_array($country->id, old('countries')) || $country->id == $country_id)
+                                            <option selected="" value="{{ $country->id }}">{{ $country->name }}</option>
+                                        @else
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="card-body">
                                 @include('admin.messages')
@@ -84,11 +90,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-auto ml-auto mr-auto pagination">
-                        {{ $footballClubs->links('pagination::bootstrap-4') }}
+                @if (!$country_id)
+                    <div class="row">
+                        <div class="col-auto ml-auto mr-auto pagination">
+                            {{ $footballClubs->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>

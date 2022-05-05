@@ -1,6 +1,13 @@
 (function (jQuery) {
     'use strict';
 
+    $('#select_country').on('change', function () {
+        let country_id = parseInt($(this).val());
+        if (country_id) {
+            window.location = window.location.pathname + '?country_id=' + country_id;
+        }
+    });
+
     $('#add_faq_block').on('click', function (e) {
         e.preventDefault();
         for(let i = 1; i <= $('.faq-row').length; i++) {

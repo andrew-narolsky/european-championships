@@ -35,14 +35,20 @@ class FootballClubController extends Controller
 
     public function index() : View
     {
-        $footballClubs = $this->footballClub->paginate(20);
+        $country_id = $this->request->get('country_id') ?? null;
+        if ($country_id) {
+            $footballClubs = $this->country->with('footballClubs')->findOrFail($country_id)->footballClubs;
+        } else {
+            $footballClubs = $this->footballClub->paginate(20);
+        }
+        $countries = $this->country->all();
         return view('admin.football-clubs.list',
-            compact('footballClubs'));
+            compact('footballClubs', 'countries', 'country_id'));
     }
 
     public function create($country_id = false) : View
     {
-        $countries = $this->country::all();
+        $countries = $this->country->all();
         return view('admin.football-clubs.create',
             compact('countries', 'country_id'));
     }
@@ -60,7 +66,7 @@ class FootballClubController extends Controller
             $this->str::slug($this->request->input('name')),
             'football-clubs');
 
-        $footballClub = $this->footballClub::create([
+        $footballClub = $this->footballClub->create([
             'name' => $this->request->input('name'),
             'old_names' => $this->request->input('old_names'),
             'founded' => $this->request->input('founded'),
@@ -77,8 +83,8 @@ class FootballClubController extends Controller
 
     public function edit($id) : View
     {
-        $countries = $this->country::all();
-        $footballClub = $this->footballClub::with('countries')->findorfail($id);
+        $countries = $this->country->all();
+        $footballClub = $this->footballClub->with('countries')->findorfail($id);
         $ids = $footballClub->countries->pluck('id');
         return view('admin.football-clubs.update',
             compact('footballClub', 'countries', 'ids'));
@@ -92,7 +98,7 @@ class FootballClubController extends Controller
             'countries' => ['required', 'array']
         ]);
 
-        $footballClub = $this->footballClub::findorfail($id);
+        $footballClub = $this->footballClub->findorfail($id);
 
         $footballClub->update([
             'name' => $this->request->input('name'),
@@ -121,7 +127,7 @@ class FootballClubController extends Controller
 
     public function destroy($id) : RedirectResponse
     {
-        $footballClub = $this->footballClub::findorfail($id);
+        $footballClub = $this->footballClub->findorfail($id);
 
         if ($footballClub->image) {
             unlink(public_path($footballClub->image));

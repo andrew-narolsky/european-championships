@@ -18,28 +18,12 @@ class CountryResource extends JsonResource
 
     public function toArray($request) : array
     {
-        $countryCompetitions = $this->competition::with('seasons.footballClubs')
-            ->with('seasons.awards')
+        $countryCompetitions = $this->competition::with('competitionType.awards')
+            ->with('seasons.footballClubs')
             ->where('country_id', $this->id)->get();
-        $competitions = [];
 
-        foreach ($countryCompetitions as $key => $competition) {
-            $competitions[$key]['id'] = $competition->id;
-            $competitions[$key]['name'] = $competition->name;
-
-            foreach ($competition->seasons as $k => $season) {
-                $awards = $season->awards->toArray();
-                $winners = $this->getWinners($season, $awards, $competition->competition_type_id);
-                $competitions[$key]['awards'] = array_map([$this, 'awards'], $awards);
-                if ($competition->competition_type_id == 1 && count($awards) == 2) {
-                    $competitions[$key]['awards']['Bronze'] = 'Bronze';
-                }
-                $competitions[$key]['result'] = in_array($competition->competition_type_id, $this->result);
-                $competitions[$key]['seasons'][$k]['year'] = $season->year;
-                $competitions[$key]['seasons'][$k]['winners'] = $winners;
-                $competitions[$key]['seasons'][$k]['result'] = $season->result;
-            }
-        }
+        $countryCompetitions = $countryCompetitions->toArray();
+        $competitions = array_map([$this, 'getCompetitions'], $countryCompetitions);
 
         return [
             'id' => $this->id,
@@ -51,27 +35,46 @@ class CountryResource extends JsonResource
         ];
     }
 
-    private function getWinners($season, $awards, $competition_type_id) : array
+    private function getCompetitions($countryCompetition) : array
     {
-        $arr = [];
-        foreach ($awards as $award) {
-            foreach ($season->footballClubs as $key => $footballClub) {
-                if ($footballClub->pivot->award_id == $award['id']) {
-                    $arr[$award['id']][$key]['award_id'] = $footballClub->pivot->award_id;
-                    $arr[$award['id']][$key]['name'] = $footballClub->name;
-                    $arr[$award['id']][$key]['slug'] = $footballClub->slug;
-                }
-            }
-        }
-        if ($competition_type_id == 1 && count($season->footballClubs) == 2) {
-            $arr[3][2]['award_id'] = 3;
-            $arr[3][2]['name'] = [];
-        }
-        return $arr;
+        return [
+            'name' => $countryCompetition['name'],
+            'is_result' => in_array($countryCompetition['competition_type']['id'], $this->result),
+            'awards' => array_map([$this, 'getAwards'], $countryCompetition['competition_type']['awards']),
+            'seasons' => array_map([$this, 'getSeasons'], $countryCompetition['seasons'])
+        ];
     }
 
-    private static function awards($award)
+    private function getAwards($award) : array
     {
-        return $award['name'];
+        return [
+            'award_id' => $award['id'],
+            'name' => $award['name'],
+        ];
+    }
+
+    private function getSeasons($season) : array
+    {
+        return [
+            'year' => $season['year'],
+            'footballClubs' => $this->getFootballClubs($season['football_clubs']),
+            'result' => $season['result'],
+        ];
+    }
+
+    private function getFootballClubs($footballClubs) : array
+    {
+        $arr = [];
+
+        foreach ($footballClubs as $footballClub) {
+            $award_id = $footballClub['pivot']['award_id'];
+            $arr[$award_id]['award_id'] = $award_id;
+            $arr[$award_id]['winners'][] = [
+                'name' => $footballClub['name'],
+                'slug' => $footballClub['slug'],
+            ];
+        }
+
+        return $arr;
     }
 }

@@ -22,26 +22,29 @@
                                 <tr>
                                     <th style="width: 100px">Year</th>
                                     <th v-for="award in competition.awards">
-                                        {{ award }}
+                                        {{ award.name }}
                                     </th>
-                                    <th v-if="competition.result">Result</th>
+                                    <th v-if="competition.is_result">Result</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="season in competition.seasons" :key="season.id">
                                     <td>{{ season.year }}</td>
-                                    <td v-for="winner in season.winners">
-                                        <span v-for="(item, i) in winner">
+                                    <td v-for="winner in season.footballClubs">
+                                        <span v-for="(item, i) in winner.winners">
                                             <span v-if="item.slug">
                                                 <router-link :to="{ name: 'football-club', params: { slug: item.slug } }">
                                                     {{ item.name }}
                                                 </router-link>
                                             </span>
                                             <span v-else>-</span>
-                                            <span v-if="i + 1 !== winner.length">|</span>
+                                            <span v-if="i + 1 !== winner.winners.length">|</span>
                                         </span>
                                     </td>
-                                    <td v-if="competition.result">{{ season.result }}</td>
+                                    <td v-for="i in (competition.awards.length - season.footballClubs.length)">
+                                        <span>-</span>
+                                    </td>
+                                    <td v-if="competition.is_result">{{ season.result }}</td>
                                 </tr>
                             </tbody>
                         </table>

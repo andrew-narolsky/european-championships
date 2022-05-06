@@ -38,6 +38,7 @@
                                 <div class="card-title">{{ __('Edit Football Club') }}</div>
                             </div>
                             <div class="card-body pb-0">
+                                @include('admin.messages')
                                 <form action="{{ route('football-clubs.update', $footballClub->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')

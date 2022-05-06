@@ -59,7 +59,7 @@ class CountryController extends Controller
 
         $image_url = $this->saveImage->save(
             $this->request->file('flag'),
-            $this->str::slug($this->request->input('name')),
+            $this->str->slug($this->request->input('name')),
                 'countries');
 
         $country = $this->country->create([
@@ -94,7 +94,7 @@ class CountryController extends Controller
 
         $image_url = $this->saveImage->save(
                 $this->request->file('new_flag'),
-                $this->str::slug($this->request->input('name')),
+                $this->str->slug($this->request->input('name')),
                 'countries') ?? $country->flag;
 
         $country->update([

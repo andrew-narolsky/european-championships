@@ -63,7 +63,7 @@ class FootballClubController extends Controller
 
         $image_url = $this->saveImage->save(
             $this->request->file('image'),
-            $this->str::slug($this->request->input('name')),
+            $this->str->slug($this->request->input('name')),
             'football-clubs');
 
         $footballClub = $this->footballClub->create([
@@ -110,7 +110,7 @@ class FootballClubController extends Controller
 
         $image_url = $this->saveImage->save(
             $this->request->file('image'),
-            $this->str::slug($this->request->input('name')),
+            $this->str->slug($this->request->input('name')),
             'football-clubs');
 
         if ($image_url) {

@@ -17,7 +17,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('Football Clubs List') }}</span>
+                            <span>{{ __('football_clubs.football_clubs_list') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -27,9 +27,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('Football Clubs List') }}</div>
+                                <div class="card-title">{{ __('football_clubs.football_clubs_list') }}</div>
                                 <select id="select_country" class="form-control" name="country" style="width: 300px">
-                                    <option value="0">{{ __('Select country') }}</option>
+                                    <option value="0">{{ __('football_clubs.select_country') }}</option>
                                     @foreach($countries as $country)
                                         @if(old('countries') && in_array($country->id, old('countries')) || $country->id == $country_id)
                                             <option selected="" value="{{ $country->id }}">{{ $country->name }}</option>
@@ -43,16 +43,16 @@
                                 @include('admin.messages')
                                 @if(!$footballClubs->count())
                                     <div class="card-sub">
-                                        {{ __('Nothing found...') }}
+                                        {{ __('football_clubs.nothing_found') }}
                                     </div>
                                 @else
                                     <table class="table mt-3">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('ID') }}</th>
-                                                <th>{{ __('Flag') }}</th>
-                                                <th>{{ __('Title') }}</th>
-                                                <th>{{ __('Actions') }}</th>
+                                                <th>{{ __('football_clubs.id') }}</th>
+                                                <th>{{ __('football_clubs.logo') }}</th>
+                                                <th>{{ __('football_clubs.title') }}</th>
+                                                <th>{{ __('football_clubs.actions') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

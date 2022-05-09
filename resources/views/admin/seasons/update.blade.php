@@ -25,7 +25,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('Update Season') }}</span>
+                            <span>{{ __('seasons.edit_season') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -35,14 +35,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('Update Season') }}</div>
+                                <div class="card-title">{{ __('seasons.edit_season') }}</div>
                             </div>
                             <div class="card-body pb-0">
                                 <form action="{{ route('seasons.update', $season->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group @error('year') has-error @enderror">
-                                        <label>{{ __('Year') }}</label>
+                                        <label>{{ __('seasons.year') }}</label>
                                         <input type="text" class="form-control input-style" name="year" value="{{ $season->year }}">
                                         @error('year')
                                             <small class="form-text text-danger">{{ $message }}</small>
@@ -65,13 +65,13 @@
                                     @endforeach
                                     @if($isResult)
                                         <div class="form-group">
-                                            <label>{{ __('Result') }}</label>
+                                            <label>{{ __('seasons.result') }}</label>
                                             <input type="text" class="form-control input-style" name="result" value="{{ $season->result }}">
                                         </div>
                                     @endif
                                     <div class="form-group text-right">
                                         <input type="hidden" class="form-control input-style" name="competition_id" value="{{ $season->competition_id }}">
-                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('Save') }}</button>
+                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('seasons.update') }}</button>
                                     </div>
                                 </form>
                             </div>

@@ -17,7 +17,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('Competition Types') }}</span>
+                            <span>{{ __('competition_types.competition_types') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -27,19 +27,19 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('Competition Types') }}</div>
+                                <div class="card-title">{{ __('competition_types.competition_types') }}</div>
                             </div>
                             <div class="card-body">
                                 @if(!$competitionTypes->count())
                                     <div class="card-sub">
-                                        {{ __('Nothing found...') }}
+                                        {{ __('competition_types.nothing_found') }}
                                     </div>
                                 @else
                                     <table class="table mt-3">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('ID') }}</th>
-                                                <th>{{ __('Title') }}</th>
+                                                <th>{{ __('competition_types.id') }}</th>
+                                                <th>{{ __('competition_types.title') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

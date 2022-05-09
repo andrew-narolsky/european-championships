@@ -17,7 +17,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('Countries') }}</span>
+                            <span>{{ __('countries.countries_list') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -27,26 +27,26 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('Countries') }}</div>
+                                <div class="card-title">{{ __('countries.countries_list') }}</div>
                                 <a href="{{ route('countries.create') }}" class="btn btn-success">
                                     <i class="fas fa-plus-circle"></i>
-                                    {{ __(' New country') }}
+                                    {{ __('countries.new_country') }}
                                 </a>
                             </div>
                             <div class="card-body">
                                 @include('admin.messages')
                                 @if(!$countries->count())
                                     <div class="card-sub">
-                                        {{ __('Nothing found...') }}
+                                        {{ __('countries.nothing_found') }}
                                     </div>
                                 @else
                                     <table class="table mt-3">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('ID') }}</th>
-                                                <th>{{ __('Flag') }}</th>
-                                                <th>{{ __('Title') }}</th>
-                                                <th>{{ __('Actions') }}</th>
+                                                <th>{{ __('countries.id') }}</th>
+                                                <th>{{ __('countries.flag') }}</th>
+                                                <th>{{ __('countries.title') }}</th>
+                                                <th>{{ __('countries.actions') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

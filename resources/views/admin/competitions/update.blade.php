@@ -25,7 +25,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('Update Competition') }}</span>
+                            <span>{{ __('competitions.edit_competition') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -35,21 +35,21 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('New Competition') }}</div>
+                                <div class="card-title">{{ __('competitions.edit_competition') }}</div>
                             </div>
                             <div class="card-body pb-0">
                                 <form action="{{ route('competition.update', $competition->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group @error('name') has-error @enderror">
-                                        <label>{{ __('Name') }}</label>
+                                        <label>{{ __('competitions.name') }}</label>
                                         <input type="text" class="form-control input-style" name="name" value="{{ $competition->name }}">
                                         @error('name')
                                             <small class="form-text text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Countries') }}</label>
+                                        <label>{{ __('competitions.country') }}</label>
                                         <select class="form-control" name="country_id">
                                             @foreach($countries as $country)
                                                 @if($country->id == $competition->country_id)
@@ -61,7 +61,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Competition Types') }}</label>
+                                        <label>{{ __('competitions.competition_type') }}</label>
                                         <select class="form-control" name="competition_type_id">
                                             @foreach($competitionTypes as $competitionType)
                                                 @if($competitionType->id == $competition->competition_type_id)
@@ -73,7 +73,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group text-right">
-                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('Save') }}</button>
+                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('competitions.update') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -83,27 +83,27 @@
                                 <div class="card-title">{{ $competition->name }}</div>
                                 <a href="{{ route('seasons.create', $competition->id) }}" class="btn btn-success">
                                     <i class="fas fa-plus-circle"></i>
-                                    {{ __(' New season') }}
+                                    {{ __('competitions.new_season') }}
                                 </a>
                             </div>
                             <div class="card-body pb-0">
                                 <div class="card-body">
                                     @if(!count($seasons))
                                         <div class="card-sub">
-                                            {{ __('Nothing found...') }}
+                                            {{ __('competitions.nothing_found') }}
                                         </div>
                                     @else
                                         <table class="table mt-3">
                                             <thead>
                                                 <tr>
-                                                    <th>{{ __('Year') }}</th>
+                                                    <th>{{ __('competitions.year') }}</th>
                                                     @foreach($awards as $award)
                                                         <th>{{ $award->name }}</th>
                                                     @endforeach
                                                     @if($isResult)
-                                                        <th>{{ __('Result') }}</th>
+                                                        <th>{{ __('competitions.result') }}</th>
                                                     @endif
-                                                    <th>{{ __('Action') }}</th>
+                                                    <th>{{ __('competitions.actions') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

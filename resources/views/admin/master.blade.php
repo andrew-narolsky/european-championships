@@ -3,11 +3,7 @@
 <head>
     <title>@yield('title')</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-
-    <!-- Favicons -->
     <link rel="icon" href="{{ asset('/admin/img/icon.ico') }}" type="image/x-icon"/>
-
-    <!-- Fonts and icons -->
     <script src="{{ asset('/admin/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
         WebFont.load({
@@ -18,8 +14,6 @@
             }
         });
     </script>
-
-    <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('/admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/admin/css/atlantis.css') }}">
 </head>
@@ -27,9 +21,7 @@
 <div class="wrapper">
     @auth()
         <div class="main-header">
-        <!-- Logo Header -->
         <div class="logo-header" data-background-color="blue">
-
             <a href="{{ route('admin') }}" class="logo">
                 <img src="{{ asset('/admin/img/logo.svg') }}" alt="navbar brand" class="navbar-brand">
             </a>
@@ -45,11 +37,7 @@
                 </button>
             </div>
         </div>
-        <!-- End Logo Header -->
-
-        <!-- Navbar Header -->
         <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
-
             <div class="container-fluid">
                 <div class="collapse" id="search-nav">
                     <form class="navbar-left navbar-form nav-search mr-md-3">
@@ -90,7 +78,7 @@
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">{{ __('Account Setting') }}</a>
+                                    <a class="dropdown-item" href="#">{{ __('admin.account_setting') }}</a>
                                     <div class="dropdown-divider"></div>
                                     <a href="{{ route('logout') }}" class="dropdown-item"
                                        onclick="document.getElementById('logout-form').submit(); return false;">{{ __('Log out') }}</a>
@@ -104,9 +92,7 @@
                 </ul>
             </div>
         </nav>
-        <!-- End Navbar -->
     </div>
-    <!-- Sidebar -->
         <div class="sidebar sidebar-style-2">
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
             <div class="sidebar-content">
@@ -118,7 +104,7 @@
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                             <span>
                                 {{ env('ADMIN_NAME') }}
-                                <span class="user-level">{{ __('Administrator') }}</span>
+                                <span class="user-level">{{ __('admin.administrator_name') }}</span>
                                 <span class="caret"></span>
                             </span>
                         </a>
@@ -128,7 +114,7 @@
                                 <li>
                                     <a href="{{ url('/') }}">
                                         <span class="link-collapse">
-                                            <span><i class="fas fa-home"></i> {{ __('Home') }}</span>
+                                            <span><i class="fas fa-home"></i> {{ __('admin.home') }}</span>
                                         </span>
                                     </a>
                                 </li>
@@ -140,19 +126,19 @@
                     <li class="nav-item active">
                         <a data-toggle="collapse" href="#countries" class="collapsed" aria-expanded="false">
                             <i class="fas fa-flag"></i>
-                            <p>{{ __('Countries') }}</p>
+                            <p>{{ __('admin.countries') }}</p>
                             <span class="caret"></span>
                         </a>
                         <div class="collapse" id="countries">
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="{{ route('countries.index') }}">
-                                        <span class="sub-item">{{ __('Countries List') }}</span>
+                                        <span class="sub-item">{{ __('admin.countries_list') }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('countries.create') }}">
-                                        <span class="sub-item">{{ __('Add Country') }}</span>
+                                        <span class="sub-item">{{ __('admin.add_country') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -161,19 +147,19 @@
                     <li class="nav-item active">
                         <a data-toggle="collapse" href="#football_club" class="collapsed" aria-expanded="false">
                             <i class="fas fa-futbol"></i>
-                            <p>{{ __('Football Club') }}</p>
+                            <p>{{ __('admin.football_clubs') }}</p>
                             <span class="caret"></span>
                         </a>
                         <div class="collapse" id="football_club">
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="{{ route('football-clubs.index') }}">
-                                        <span class="sub-item">{{ __('Football Clubs List') }}</span>
+                                        <span class="sub-item">{{ __('admin.football_clubs_list') }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('football-clubs.create') }}">
-                                        <span class="sub-item">{{ __('Add Football Club') }}</span>
+                                        <span class="sub-item">{{ __('admin.add_football_club') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -182,44 +168,37 @@
                     <li class="nav-item active">
                         <a data-toggle="collapse" href="#competition_types" class="collapsed" aria-expanded="false">
                             <i class="fas fa-crown"></i>
-                            <p>{{ __('Competition Types') }}</p>
+                            <p>{{ __('admin.competition_types') }}</p>
                             <span class="caret"></span>
                         </a>
                         <div class="collapse" id="competition_types">
                             <ul class="nav nav-collapse">
                                 <li>
                                     <a href="{{ route('competition-type.index') }}">
-                                        <span class="sub-item">{{ __('List of Competition Types') }}</span>
+                                        <span class="sub-item">{{ __('admin.list_of_competition_types') }}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('competition.create') }}">
-                                        <span class="sub-item">{{ __('Add Competition') }}</span>
+                                        <span class="sub-item">{{ __('admin.add_competition') }}</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                 </ul>
-                <ol>
-                    <li>
-                        <p style="color: black">- Localization (11 lesson)</p>
-                    </li>
-                </ol>
             </div>
         </div>
     </div>
     @endauth
-    <!-- End Sidebar -->
     @yield('content')
-    <!-- Custom template | don't include it in your project! -->
     @auth()
         <div class="custom-template">
-        <div class="title">Settings</div>
+        <div class="title">{{ __('admin.settings') }}</div>
         <div class="custom-content">
             <div class="switcher">
                 <div class="switch-block">
-                    <h4>Logo Header</h4>
+                    <h4>{{ __('admin.logo_header') }}</h4>
                     <div class="btnSwitch">
                         <button type="button" class="changeLogoHeaderColor" data-color="dark"></button>
                         <button type="button" class="selected changeLogoHeaderColor" data-color="blue"></button>
@@ -240,7 +219,7 @@
                     </div>
                 </div>
                 <div class="switch-block">
-                    <h4>Navbar Header</h4>
+                    <h4>{{ __('admin.navbar_header') }}</h4>
                     <div class="btnSwitch">
                         <button type="button" class="changeTopBarColor" data-color="dark"></button>
                         <button type="button" class="changeTopBarColor" data-color="blue"></button>
@@ -261,7 +240,7 @@
                     </div>
                 </div>
                 <div class="switch-block">
-                    <h4>Sidebar</h4>
+                    <h4>{{ __('admin.sidebar') }}</h4>
                     <div class="btnSwitch">
                         <button type="button" class="selected changeSideBarColor" data-color="white"></button>
                         <button type="button" class="changeSideBarColor" data-color="dark"></button>
@@ -269,7 +248,7 @@
                     </div>
                 </div>
                 <div class="switch-block">
-                    <h4>Background</h4>
+                    <h4>{{ __('admin.background') }}</h4>
                     <div class="btnSwitch">
                         <button type="button" class="changeBackgroundColor" data-color="bg2"></button>
                         <button type="button" class="changeBackgroundColor selected" data-color="bg1"></button>
@@ -286,38 +265,20 @@
     <div class="loader-wrap">
         <img src="{{ asset('/admin/img/loader.svg') }}" alt="">
     </div>
-    <!-- End Custom template -->
     @endauth
 </div>
-<!--   Core JS Files   -->
 <script src="{{ asset('/admin/js/core/jquery.3.2.1.min.js') }}"></script>
 <script src="{{ asset('/admin/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('/admin/js/core/bootstrap.min.js') }}"></script>
-
-<!-- jQuery UI -->
 <script src="{{ asset('/admin/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
-
-<!-- jQuery Scrollbar -->
 <script src="{{ asset('/admin/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
-
-<!-- Sweet Alert -->
 <script src="{{ asset('/admin/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
-
-<!-- Atlantis JS -->
 <script src="{{ asset('/admin/js/atlantis.min.js') }}"></script>
-
-<!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="{{ asset('/admin/js/setting-demo.js') }}"></script>
-
-<!-- Сkeditor -->
 <script src="{{ asset('/admin/plugins/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('/admin/plugins/ckfinder/ckfinder.js') }}"></script>
-
-<!-- Scripts -->
 <script src="{{ asset('/admin/js/script.js') }}"></script>
-
 @yield('js')
-
 </body>
 </html>

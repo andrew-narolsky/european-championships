@@ -18,14 +18,14 @@
                         </li>
                         <li class="nav-home">
                             <a href="{{ route('countries.index') }}" style="color: #fff">
-                                <span>{{ __('Countries List') }}</span>
+                                <span>{{ __('countries.countries_list') }}</span>
                             </a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('Edit Country') }}</span>
+                            <span>{{ __('countries.edit_country') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -35,10 +35,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('Edit Country') }}</div>
+                                <div class="card-title">{{ __('countries.edit_country') }}</div>
                                 <a href="{{ route('football-clubs.create', $country->id) }}" class="btn btn-success">
                                     <i class="fas fa-plus-circle"></i>
-                                    {{ __('Add Football Club') }}
+                                    {{ __('countries.new_football_club') }}
                                 </a>
                             </div>
                             <div class="card-body pb-0">
@@ -47,18 +47,18 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group @error('name') has-error @enderror">
-                                        <label>{{ __('Name') }}</label>
+                                        <label>{{ __('countries.name') }}</label>
                                         <input type="text" class="form-control input-style" name="name" value="{{ $country->name }}">
                                         @error('name')
                                             <small class="form-text text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Notice') }}</label>
+                                        <label>{{ __('countries.notice') }}</label>
                                         <textarea class="form-control ckeditor" id="ckeditor" name="notice" rows="3">{{ $country->notice }}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Competition Types') }}</label>
+                                        <label>{{ __('countries.competition_types') }}</label>
                                         <select multiple="" class="form-control" name="competition_types[]">
                                             @foreach($competitionTypes as $competitionType)
                                                 @if($ids->contains($competitionType->id))
@@ -76,37 +76,37 @@
                                             @endif
                                         </div>
                                         <div class="col-6">
-                                            <label>{{ __('Flag') }}</label>
+                                            <label>{{ __('countries.flag') }}</label>
                                             <input type="file" name="new_flag" class="form-control-file">
                                         </div>
                                     </div>
                                     <div class="form-group text-right">
-                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('Update') }}</button>
+                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('countries.update') }}</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('Countries competition') }}</div>
+                                <div class="card-title">{{ __('countries.countries_competitions') }}</div>
                                 <a href="{{ route('competition.create', $country->id) }}" class="btn btn-success">
                                     <i class="fas fa-plus-circle"></i>
-                                    {{ __(' New competition') }}
+                                    {{ __('countries.new_competition') }}
                                 </a>
                             </div>
                             <div class="card-body pb-0">
                                 <div class="card-body">
                                     @if(!$competitions->count())
                                         <div class="card-sub">
-                                            {{ __('Nothing found...') }}
+                                            {{ __('countries.nothing_found') }}
                                         </div>
                                     @else
                                         <table class="table mt-3">
                                             <thead>
                                             <tr>
-                                                <th>{{ __('ID') }}</th>
-                                                <th>{{ __('Title') }}</th>
-                                                <th>{{ __('Actions') }}</th>
+                                                <th>{{ __('countries.id') }}</th>
+                                                <th>{{ __('countries.title') }}</th>
+                                                <th>{{ __('countries.actions') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>

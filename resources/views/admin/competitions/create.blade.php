@@ -17,7 +17,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <span>{{ __('New Competition') }}</span>
+                            <span>{{ __('competitions.new_competition') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -27,20 +27,20 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">{{ __('New Competition') }}</div>
+                                <div class="card-title">{{ __('competitions.new_competition') }}</div>
                             </div>
                             <div class="card-body pb-0">
                                 <form action="{{ route('competition.store') }}" method="POST">
                                     @csrf
                                     <div class="form-group @error('name') has-error @enderror">
-                                        <label>{{ __('Name') }}</label>
+                                        <label>{{ __('competitions.name') }}</label>
                                         <input type="text" class="form-control input-style" name="name" value="{{ old('name') }}">
                                         @error('name')
                                             <small class="form-text text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Countries') }}</label>
+                                        <label>{{ __('competitions.country') }}</label>
                                         <select class="form-control" name="country_id">
                                             @foreach($countries as $country)
                                                 @if($country->id == $country_id)
@@ -52,7 +52,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Competition Types') }}</label>
+                                        <label>{{ __('competitions.competition_type') }}</label>
                                         <select class="form-control" name="competition_type_id">
                                             @foreach($competitionTypes as $competitionType)
                                                 <option value="{{ $competitionType->id }}">{{ $competitionType->name }}</option>
@@ -60,7 +60,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group text-right">
-                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('Create') }}</button>
+                                        <button type="submit" class="btn btn-success btn-style mt-4">{{ __('competitions.create') }}</button>
                                     </div>
                                 </form>
                             </div>

@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\CompetitionType;
 use Illuminate\Contracts\View\View;
 
-class CompetitionTypeController extends Controller
+class CompetitionTypeController extends BaseController
 {
     protected object $competitionType;
 
     public function __construct(
         CompetitionType $competitionType)
     {
+        parent::__construct();
         $this->competitionType = $competitionType;
     }
 

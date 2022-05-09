@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes\SaveImage;
-use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\FootballClub;
 use Illuminate\Contracts\View\View;
@@ -11,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class FootballClubController extends Controller
+class FootballClubController extends BaseController
 {
     protected object $request;
     protected object $footballClub;
@@ -26,6 +25,7 @@ class FootballClubController extends Controller
         SaveImage $saveImage,
         Str $str)
     {
+        parent::__construct();
         $this->request = $request;
         $this->footballClub = $footballClub;
         $this->country = $country;

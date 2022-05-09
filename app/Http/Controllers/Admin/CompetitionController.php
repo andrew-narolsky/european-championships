@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Competition;
 use App\Models\CompetitionType;
 use App\Models\Country;
@@ -11,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class CompetitionController extends Controller
+class CompetitionController extends BaseController
 {
     protected object $request;
     protected object $competition;
@@ -29,6 +28,7 @@ class CompetitionController extends Controller
         Season $season,
         CompetitionType $competitionType)
     {
+        parent::__construct();
         $this->request = $request;
         $this->competition = $competition;
         $this->country = $country;

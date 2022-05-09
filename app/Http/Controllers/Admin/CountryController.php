@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes\SaveImage;
-use App\Http\Controllers\Controller;
 use App\Models\Competition;
 use App\Models\CompetitionType;
 use App\Models\Country;
@@ -12,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class CountryController extends Controller
+class CountryController extends BaseController
 {
     protected object $request;
     protected object $country;
@@ -29,6 +28,7 @@ class CountryController extends Controller
         SaveImage $saveImage,
         Str $str)
     {
+        parent::__construct();
         $this->request = $request;
         $this->country = $country;
         $this->competition = $competition;

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,50 +37,56 @@ Auth::routes([
     'verify' => false,
 ]);
 
+
 // Admin
-Route::group(
-    ['prefix'=>'admin',
-    'middleware' => 'auth'], function () {
-    Route::get('/',
-        [App\Http\Controllers\Admin\MainController::class, 'index'])
-        ->name('admin');
+Route::group([
+    'prefix' => (Config::get('app.locale') == 'en') ? '' : Config::get('app.locale')
+], function()
+{
+    Route::group(
+        ['prefix' => 'admin',
+            'middleware' => 'auth'], function () {
+        Route::get('/',
+            [App\Http\Controllers\Admin\MainController::class, 'index'])
+            ->name('admin');
 
-    // Countries
-    Route::resource('/countries',
-        App\Http\Controllers\Admin\CountryController::class,
-        ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]
-    );
+        // Countries
+        Route::resource('/countries',
+            App\Http\Controllers\Admin\CountryController::class,
+            ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]
+        );
 
-    // Competition Types
-    Route::resource('/competition-type',
-        App\Http\Controllers\Admin\CompetitionTypeController::class,
-        ['only' => ['index']]
-    );
+        // Competition Types
+        Route::resource('/competition-type',
+            App\Http\Controllers\Admin\CompetitionTypeController::class,
+            ['only' => ['index']]
+        );
 
-    // Competition
-    Route::get('/competition/create/{country_id?}',
-        [App\Http\Controllers\Admin\CompetitionController::class, 'create'])
-        ->name('competition.create');
-    Route::resource('/competition',
-        App\Http\Controllers\Admin\CompetitionController::class,
-        ['only' => ['store', 'edit', 'update', 'destroy']]
-    );
+        // Competition
+        Route::get('/competition/create/{country_id?}',
+            [App\Http\Controllers\Admin\CompetitionController::class, 'create'])
+            ->name('competition.create');
+        Route::resource('/competition',
+            App\Http\Controllers\Admin\CompetitionController::class,
+            ['only' => ['store', 'edit', 'update', 'destroy']]
+        );
 
-    // Football Club
-    Route::get('/football-clubs/create/{country_id?}',
-        [App\Http\Controllers\Admin\FootballClubController::class, 'create'])
-        ->name('football-clubs.create');
-    Route::resource('/football-clubs',
-        App\Http\Controllers\Admin\FootballClubController::class,
-        ['only' => ['index', 'store', 'edit', 'update', 'destroy']]
-    );
+        // Football Club
+        Route::get('/football-clubs/create/{country_id?}',
+            [App\Http\Controllers\Admin\FootballClubController::class, 'create'])
+            ->name('football-clubs.create');
+        Route::resource('/football-clubs',
+            App\Http\Controllers\Admin\FootballClubController::class,
+            ['only' => ['index', 'store', 'edit', 'update', 'destroy']]
+        );
 
-    // Season
-    Route::get('/seasons/create/competition/{competition_id}',
-        [App\Http\Controllers\Admin\SeasonController::class, 'create'])
-        ->name('seasons.create');
-    Route::resource('/seasons',
-        App\Http\Controllers\Admin\SeasonController::class,
-        ['only' => ['store', 'edit', 'update', 'destroy']]
-    );
+        // Season
+        Route::get('/seasons/create/competition/{competition_id}',
+            [App\Http\Controllers\Admin\SeasonController::class, 'create'])
+            ->name('seasons.create');
+        Route::resource('/seasons',
+            App\Http\Controllers\Admin\SeasonController::class,
+            ['only' => ['store', 'edit', 'update', 'destroy']]
+        );
+    });
 });

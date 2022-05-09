@@ -201,6 +201,11 @@
                         </div>
                     </li>
                 </ul>
+                <ol>
+                    <li>
+                        <p style="color: black">- Localization (11 lesson)</p>
+                    </li>
+                </ol>
             </div>
         </div>
     </div>

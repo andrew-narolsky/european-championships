@@ -66,7 +66,7 @@ class CompetitionController extends BaseController
         $competitionTypes = $this->competitionType->all();
         $countries = $this->country->all();
         $country = $this->country->findorfail($competition->country_id);
-        $seasons = $this->season->with('footballClubs')->where('competition_id', $id)->get();
+        $seasons = $this->season->with('footballClubs')->where('competition_id', $id)->orderBy('year')->get();
         $awards = $competition->competitionType->awards;
         $seasons = $this->getSeasons($seasons, $awards, $competition->competition_type_id);
 
